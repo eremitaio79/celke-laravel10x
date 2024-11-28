@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
+}); */
+
+// Homepage project route.
+Route::get('/', function () {
+    return view('homecelke');
 });
+
+// Courses.
