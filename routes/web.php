@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Original project route.
 /* Route::get('/', function () {
     return view('welcome');
 }); */
@@ -23,3 +25,4 @@ Route::get('/', function () {
 });
 
 // Courses.
+Route::get('/index-course', [CourseController::class, 'index'])->name('course.index');
