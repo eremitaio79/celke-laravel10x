@@ -72,7 +72,15 @@
                 {{-- CARD START --}}
                 <div class="card text-center">
                     <div class="card-header">
-                        @yield('title_card')
+                        <div class="row">
+                            <div class="col-8 text-start">
+                                <h3>@yield('title_card')</h3>
+                            </div>
+
+                            <div class="col-4 text-end">
+                                <a href="#" class="btn btn-primary">Novo</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         @yield('content')
