@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -33,7 +34,21 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        // PE79: Armazena todos os valores recebidos na tabela do banco de dados.
+        // Course::create($request->all());
+
+        // PE79: Armazena os dados nas colunas indicadas individualmente dentro de create.
+        Course::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $request->image,
+            // 'status' => $request->status ? 1 : 0
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('course.index')->with('msgSuccess', 'Curso cadastrado com sucesso!');
     }
 
     /**
