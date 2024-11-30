@@ -5,10 +5,14 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="#" class="btn btn-primary">Novo</a>
+    <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary">Cancelar</a>
 @endsection
 
 
 @section('content')
+
+    <p>
+        EDIT
+    </p>
 
 @endsection

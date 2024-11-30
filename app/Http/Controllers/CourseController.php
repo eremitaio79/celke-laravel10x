@@ -12,6 +12,8 @@ class CourseController extends Controller
      */
     public function index()
     {
+        // dd('List all courses in the table.');
+
         // return 'Course index method.';
         return view('course.index');
     }
@@ -21,7 +23,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        // dd('CREATE VIEW');
+
+        return view('course.create');
     }
 
     /**
@@ -35,17 +39,21 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id = null)
     {
-        //
+        // dd('Show method loaded.');
+
+        return view('course.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id = null)
     {
-        //
+        // dd('EDIT VIEW');
+
+        return view('course.edit');
     }
 
     /**

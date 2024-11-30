@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
 
-            // PE: My fields.
+            // PE79: My fields.
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('image')->nullable();
             $table->boolean('status')->default(true);
+
+            $table->timestamps();
         });
     }
 
