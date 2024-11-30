@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="col-4 text-end">
-                                <a href="#" class="btn btn-primary">Novo</a>
+                                @yield('links')
                             </div>
                         </div>
                     </div>
