@@ -48,30 +48,45 @@
         <div class="col-12 mb-3">
 
             {{-- TABLE START --}}
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <a href="{{ route('course.edit') }}">Edit</a>&nbsp;|&nbsp;
-                            <a href="{{ route('course.show') }}">Show</a>
-                            {{-- <a href="{{ route('course.delete') }}">Delete</a> --}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            @if ($coursesList->isNotEmpty())
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="text-start">
+                            <th scope="col" width="50">ID</th>
+                            <th scope="col" width="300">Nome</th>
+                            <th scope="col" width="500">Descritivo</th>
+                            <th scope="col" width="100">Status</th>
+                            <th scope="col" width="100">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($coursesList as $course)
+                            <tr class="text-start">
+                                <th scope="row">{{ $course->id }}</th>
+                                <td>{{ $course->name }}</td>
+                                <td>{{ $course->description }}</td>
+                                <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td>
+                                <td>
+                                    <a href="{{ route('course.edit') }}">Edit</a>&nbsp;|&nbsp;
+                                    <a href="{{ route('course.show') }}">Show</a>
+                                    {{-- <a href="{{ route('course.delete') }}">Delete</a> --}}
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+
+                <div class="row mt-4">
+                    <div class="col-12 d-flex justify-content-center">
+                        {{ $coursesList->links() }}
+                    </div>
+                </div>
+            @else
+                <div class="alert alert-warning" role="alert">
+                    Nenhum curso disponível no momento!
+                </div>
+            @endif
             {{-- TABLE END --}}
 
         </div>
