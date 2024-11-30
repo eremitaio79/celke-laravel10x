@@ -15,8 +15,11 @@ class CourseController extends Controller
     {
         // dd('List all courses in the table.');
 
+        $coursesList = Course::orderByDesc('id')->paginate(5);
+        // dd($coursesList);
+
         // return 'Course index method.';
-        return view('course.index');
+        return view('course.index', ['coursesList' => $coursesList]);
     }
 
     /**
