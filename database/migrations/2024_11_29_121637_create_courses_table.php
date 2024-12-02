@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             // PE79: My fields.
-            $table->string('name');
+            $table->string('name')->nullable(false);
             $table->text('description')->nullable();
             $table->text('image')->nullable();
             $table->integer('status')->default(0);
