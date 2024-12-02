@@ -15,7 +15,8 @@ class CourseController extends Controller
     {
         // dd('List all courses in the table.');
 
-        $coursesList = Course::orderByDesc('id')->paginate(5);
+        $coursesList = Course::orderByDesc('id')->paginate(10);
+        // $coursesList = Course::where('status', 1)->orderByDesc('id')->paginate(5);
         // dd($coursesList);
 
         // return 'Course index method.';
@@ -59,9 +60,10 @@ class CourseController extends Controller
      */
     public function show(string $id = null)
     {
-        // dd('Show method loaded.');
+        $selectedCourse = Course::where('id', $id)->first();
+        // dd($selectedCourse);
 
-        return view('course.show');
+        return view('course.show', ['selectedCourse' => $selectedCourse]);
     }
 
     /**

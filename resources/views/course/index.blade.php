@@ -32,7 +32,7 @@
                     alertElement.classList.remove("show"); // Remove a exibição
                     alertElement.classList.add("fade"); // Aplica a animação de saída
 
-                    // Remove o elemento do DOM após a animação (500ms é o tempo padrão do Bootstrap)
+                    // Remove the DOM element after animation (500ms is the default time at Boorstrap)
                     setTimeout(() => {
                         alertElement.remove();
                     }, 500); // Aguarda a animação terminar antes de remover
@@ -56,6 +56,7 @@
                             <th scope="col" width="300">Nome</th>
                             <th scope="col" width="500">Descritivo</th>
                             <th scope="col" width="100">Status</th>
+                            <th scope="col" width="220">Criação</th>
                             <th scope="col" width="100">Ações</th>
                         </tr>
                     </thead>
@@ -67,8 +68,11 @@
                                 <td>{{ $course->description }}</td>
                                 <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td>
                                 <td>
+                                    {{ \Carbon\Carbon::parse($course->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}
+                                </td>
+                                <td>
                                     <a href="{{ route('course.edit') }}">Edit</a>&nbsp;|&nbsp;
-                                    <a href="{{ route('course.show') }}">Show</a>
+                                    <a href="{{ route('course.show', ['id' => $course->id]) }}">Show</a>
                                     {{-- <a href="{{ route('course.delete') }}">Delete</a> --}}
                                 </td>
                             </tr>
