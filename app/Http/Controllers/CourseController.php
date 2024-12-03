@@ -58,31 +58,60 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id = null)
+    public function show(string $id)
     {
-        $selectedCourse = Course::where('id', $id)->first();
-        // dd($selectedCourse);
+        $selectedCourse = Course::find($id);
 
-        return view('course.show', ['selectedCourse' => $selectedCourse]);
+        if (!$selectedCourse) {
+            return redirect()->route('course.index')->with('msgError', 'Curso não encontrado.');
+        }
+
+        return view('course.show', compact('selectedCourse'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id = null)
+    public function edit(string $id)
     {
-        // dd('EDIT VIEW');
+        $editCourse = Course::find($id);
 
-        return view('course.edit');
+        if (!$editCourse) {
+            return redirect()->route('course.index')->with('msgError', 'Curso não encontrado.');
+        }
+
+        return view('course.edit', compact('editCourse'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($id);
+
+        $course = Course::find($id);
+        // dd($course);
+
+        if (!$course) {
+            return redirect()->route('course.index')->with('msgError', 'Curso não encontrado.');
+        }
+
+        $course->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('courses', 'public');
+            $course->update(['image' => $imagePath]);
+        }
+
+        return redirect()->route('course.show', $id)
+            ->with('msgSuccess', 'O curso foi atualizado com sucesso!');
     }
+
 
     /**
      * Remove the specified resource from storage.
