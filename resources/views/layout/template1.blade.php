@@ -13,11 +13,11 @@
 
 <body>
 
-    <div class="container-fluid bg-secondary sticky-top">
+    <div class="container-fluid sticky-top" style="background-color:#2b3035">
         {{-- CONTAINER START --}}
         <div class="container">
             {{-- NAVBAR START --}}
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}" target="_self">CELKE</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

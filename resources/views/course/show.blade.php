@@ -5,11 +5,41 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary">Voltar</a>
+    <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary">Lista de Cursos</a>
+    <a href="{{ route('course.edit', ['id' => $selectedCourse->id]) }}" target="_self"
+        class="btn btn-success">&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;</a>
 @endsection
 
 
 @section('content')
+
+    {{-- MSG --}}
+    @if (session('msgSuccess'))
+        <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span class="text-start">
+                <strong>{{ session('msgSuccess') }}</strong>
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <script>
+        // JavaScript para fazer o alerta desaparecer e liberar o espaço
+        document.addEventListener("DOMContentLoaded", function() {
+            const alertElement = document.getElementById("success-alert");
+            if (alertElement) {
+                setTimeout(() => {
+                    alertElement.classList.remove("show"); // Remove a exibição
+                    alertElement.classList.add("fade"); // Aplica a animação de saída
+
+                    // Remove the DOM element after animation (500ms is the default time at Boorstrap)
+                    setTimeout(() => {
+                        alertElement.remove();
+                    }, 500); // Aguarda a animação terminar antes de remover
+                }, 5000); // 5000 ms = 5 segundos
+            }
+        });
+    </script>
 
     <table class="table">
         <thead class="text-start">

@@ -71,7 +71,7 @@
                                     {{ \Carbon\Carbon::parse($course->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('course.edit') }}">Edit</a>&nbsp;|&nbsp;
+                                    <a href="{{ route('course.edit', ['id' => $course->id]) }}">Edit</a>&nbsp;|&nbsp;
                                     <a href="{{ route('course.show', ['id' => $course->id]) }}">Show</a>
                                     {{-- <a href="{{ route('course.delete') }}">Delete</a> --}}
                                 </td>
