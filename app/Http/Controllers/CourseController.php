@@ -91,7 +91,8 @@ class CourseController extends Controller
         // dd($id);
 
         $course = Course::find($id);
-        // dd($course);
+        // dd($id);
+        // dd($request);
 
         if (!$course) {
             return redirect()->route('course.index')->with('msgError', 'Curso não encontrado.');

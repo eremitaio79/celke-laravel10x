@@ -15,7 +15,7 @@
         @csrf
         @method('PUT')
 
-        <input type="hidden" id="id" name="id" value="{{ $editCourse->id }}" />
+        {{-- <input type="hidden" id="id" name="id" value="{{ $editCourse->id }}" /> --}}
 
         <div class="row mb-3">
             <div class="col-12 text-start">

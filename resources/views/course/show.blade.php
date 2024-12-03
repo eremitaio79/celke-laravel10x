@@ -63,7 +63,11 @@
             </tr>
             <tr>
                 <th scope="row">Imagem</th>
-                <td>{{ $selectedCourse->image }}</td>
+                <td>
+                    {{ $selectedCourse->image }}
+                    <hr />
+                    <img src="{{ $selectedCourse->image }}" alt="Imagem do Curso" class="img-thumbnail" style="max-width: 300px;">
+                </td>
             </tr>
             <tr>
                 <th scope="row">Status</th>
