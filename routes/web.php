@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,8 @@ Route::get('/', function () {
     return view('homecelke');
 });
 
+/* My routes */
+
 // Courses.
 Route::get('/index-course', [CourseController::class, 'index'])->name('course.index'); // Index method.
 Route::get('/show-course/{id}', [CourseController::class, 'show'])->name('course.show'); // Show method.
@@ -32,3 +35,7 @@ Route::post('/store-course', [CourseController::class, 'store'])->name('course.s
 Route::get('/edit-course/{id}', [CourseController::class, 'edit'])->name('course.edit'); // Edit method.
 Route::put('/update-course/{id}', [CourseController::class, 'update'])->name('course.update'); // Put method.
 Route::delete('/destroy-course/{id}', [CourseController::class, 'destroy'])->name('course.destroy'); // Delete method.
+
+// Classes.
+Route::get('/index-allclasse', [ClasseController::class, 'allClasses'])->name('allclasse.index'); // Index all classes.
+Route::get('/index-classe/{course}', [ClasseController::class, 'index'])->name('classe.index'); // Index classe.

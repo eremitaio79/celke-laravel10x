@@ -6,7 +6,8 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="{{ route('course.create') }}" target="_self" class="btn btn-primary">Novo</a>
+    <a href="{{ route('allclasse.index') }}" target="_self" class="btn btn-secondary">Todas as Aulas</a>
+    <a href="{{ route('course.create') }}" target="_self" class="btn btn-primary">Novo Curso</a>
 @endsection
 
 
@@ -126,6 +127,10 @@
                                                     onclick="return confirm('Tem certeza que deseja excluir este registro?')">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
+                                                <a type="button" class="btn btn-secondary btn-sm"
+                                                    href="{{ route('classe.index', ['course' => $course->id]) }}">
+                                                    <i class="fa-solid fa-clipboard"></i>
+                                                </a>
                                             </div>
                                         </form>
                                     </td>
