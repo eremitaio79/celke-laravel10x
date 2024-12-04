@@ -5,9 +5,16 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary">Lista de Cursos</a>
-    <a href="{{ route('course.edit', ['id' => $selectedCourse->id]) }}" target="_self"
-        class="btn btn-success">&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;</a>
+    <form action="{{ route('course.destroy', ['id' => $selectedCourse->id]) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('DELETE')
+
+        <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary"><i class="fa-solid fa-list"></i></a>
+        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este registro?')"
+            class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+        <a href="{{ route('course.edit', ['id' => $selectedCourse->id]) }}" target="_self" class="btn btn-success"><i
+                class="fa-solid fa-pen-to-square"></i></a>
+    </form>
 @endsection
 
 
@@ -62,8 +69,24 @@
                 <td>{{ $selectedCourse->description }}</td>
             </tr>
             <tr>
+                <th scope="row">Preço</th>
+                @php
+                    $formatter = new NumberFormatter('pt_BR', NumberFormatter::CURRENCY);
+                @endphp
+                <td>{{ $formatter->formatCurrency($selectedCourse->price, 'BRL') }}</td>
+            </tr>
+            <tr>
                 <th scope="row">Imagem</th>
-                <td>{{ $selectedCourse->image }}</td>
+                <td>
+                    {{ $selectedCourse->image }}
+                    @if ($selectedCourse->image != '')
+                        <hr />
+                        <img src="{{ $selectedCourse->image }}" alt="Imagem do Curso" class="img-thumbnail"
+                            style="max-width: 300px;">
+                    @else
+                        Sem imagem
+                    @endif
+                </td>
             </tr>
             <tr>
                 <th scope="row">Status</th>
