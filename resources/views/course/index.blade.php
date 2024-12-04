@@ -13,7 +13,36 @@
 {{-- CONTENT --}}
 @section('content')
 
-    {{-- MSG --}}
+    {{-- MSG ERROR --}}
+    @if (session('msgError'))
+        <div id="error-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <span class="text-start">
+                <strong>{{ session('msgError') }}</strong>
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <script>
+        // JavaScript para fazer o alerta desaparecer e liberar o espaço
+        document.addEventListener("DOMContentLoaded", function() {
+            const alertElement = document.getElementById("error-alert");
+            if (alertElement) {
+                setTimeout(() => {
+                    alertElement.classList.remove("show"); // Remove a exibição
+                    alertElement.classList.add("fade"); // Aplica a animação de saída
+
+                    // Remove the DOM element after animation (500ms is the default time at Boorstrap)
+                    setTimeout(() => {
+                        alertElement.remove();
+                    }, 500); // Aguarda a animação terminar antes de remover
+                }, 5000); // 5000 ms = 5 segundos
+            }
+        });
+    </script>
+
+
+    {{-- MSG SUCCESS --}}
     @if (session('msgSuccess'))
         <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
             <span class="text-start">
@@ -53,8 +82,9 @@
                     <thead>
                         <tr class="text-start">
                             <th scope="col" width="50">ID</th>
-                            <th scope="col" width="300">Nome</th>
+                            <th scope="col" width="400">Nome</th>
                             <th scope="col" width="500">Descritivo</th>
+                            <th scope="col" width="120">Preço</th>
                             <th scope="col" width="100">Status</th>
                             <th scope="col" width="220">Criação</th>
                             <th scope="col" width="100">Ações</th>
@@ -66,14 +96,34 @@
                                 <th scope="row">{{ $course->id }}</th>
                                 <td>{{ $course->name }}</td>
                                 <td>{{ $course->description }}</td>
+
+                                @php
+                                    $formatter = new NumberFormatter('pt_BR', NumberFormatter::CURRENCY);
+                                @endphp
+                                <td>{{ $formatter->formatCurrency($course->price, 'BRL') }}</td>
+
                                 <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td>
                                 <td>
                                     {{ \Carbon\Carbon::parse($course->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('course.edit', ['id' => $course->id]) }}">Edit</a>&nbsp;|&nbsp;
-                                    <a href="{{ route('course.show', ['id' => $course->id]) }}">Show</a>
-                                    {{-- <a href="{{ route('course.delete') }}">Delete</a> --}}
+                                    <form action="{{ route('course.destroy', ['id' => $course->id]) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                            <a type="button" class="btn btn-success btn-sm"
+                                                href="{{ route('course.edit', ['id' => $course->id]) }}">
+                                                <i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a type="button" class="btn btn-warning btn-sm"
+                                                href="{{ route('course.show', ['id' => $course->id]) }}">
+                                                <i class="fa-solid fa-eye"></i></a>
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Tem certeza que deseja excluir este registro?')"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

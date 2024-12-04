@@ -47,6 +47,7 @@ class CourseController extends Controller
         Course::create([
             'name' => $request->name,
             'description' => $request->description,
+            'price' => $request->price,
             'image' => $request->image,
             // 'status' => $request->status ? 1 : 0
             'status' => $request->status
@@ -101,6 +102,7 @@ class CourseController extends Controller
         $course->update([
             'name' => $request->name,
             'description' => $request->description,
+            'price' => $request->price,
             'status' => $request->status,
         ]);
 
@@ -119,6 +121,15 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd($id);
+        $course = Course::find($id);
+
+        if (!$course) {
+            return redirect()->route('course.index')->with('msgError', 'Curso não encontrado.');
+        }
+
+        $course->delete();
+
+        return redirect()->route('course.index')->with('msgSuccess', 'O registro foi excluído com sucesso!');
     }
 }

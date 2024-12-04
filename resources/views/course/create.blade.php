@@ -16,10 +16,20 @@
         @method('POST')
 
         <div class="row mb-3">
-            <div class="col-12 text-start">
+            <div class="col-9 text-start">
                 <label for="name">Nome do Curso</label>
                 <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}"
                     placeholder="Informe o nome do curso" required />
+            </div>
+
+            <div class="col-3 text-start">
+                <label for="price">Preço</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">R$</span>
+                    <input type="number" step="0.01" min="0.00" id="price" name="price" class="form-control"
+                        value="{{ old('price') }}" placeholder="Informe o preço do curso" aria-label="price"
+                        aria-describedby="basic-addon1">
+                </div>
             </div>
         </div>
 
