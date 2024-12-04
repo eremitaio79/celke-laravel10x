@@ -78,58 +78,63 @@
 
             {{-- TABLE START --}}
             @if ($coursesList->isNotEmpty())
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr class="text-start">
-                            <th scope="col" width="50">ID</th>
-                            <th scope="col" width="400">Nome</th>
-                            <th scope="col" width="500">Descritivo</th>
-                            <th scope="col" width="120">Preço</th>
-                            <th scope="col" width="100">Status</th>
-                            <th scope="col" width="220">Criação</th>
-                            <th scope="col" width="100">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($coursesList as $course)
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
                             <tr class="text-start">
-                                <th scope="row">{{ $course->id }}</th>
-                                <td>{{ $course->name }}</td>
-                                <td>{{ $course->description }}</td>
-
-                                @php
-                                    $formatter = new NumberFormatter('pt_BR', NumberFormatter::CURRENCY);
-                                @endphp
-                                <td>{{ $formatter->formatCurrency($course->price, 'BRL') }}</td>
-
-                                <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td>
-                                <td>
-                                    {{ \Carbon\Carbon::parse($course->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}
-                                </td>
-                                <td>
-                                    <form action="{{ route('course.destroy', ['id' => $course->id]) }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <a type="button" class="btn btn-success btn-sm"
-                                                href="{{ route('course.edit', ['id' => $course->id]) }}">
-                                                <i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a type="button" class="btn btn-warning btn-sm"
-                                                href="{{ route('course.show', ['id' => $course->id]) }}">
-                                                <i class="fa-solid fa-eye"></i></a>
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Tem certeza que deseja excluir este registro?')"><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </form>
-                                </td>
+                                <th scope="col" width="50">ID</th>
+                                <th scope="col" class="text-truncate" style="max-width: 150px;">Nome</th>
+                                <th scope="col" class="d-none d-lg-table-cell text-truncate" style="max-width: 250px;">
+                                    Descritivo</th>
+                                <th scope="col" class="text-truncate" width="120">Preço</th>
+                                <th scope="col" width="100">Status</th>
+                                <th scope="col" class="d-none d-md-table-cell" width="220">Criação</th>
+                                <th scope="col" width="100">Ações</th>
                             </tr>
-                        @endforeach
+                        </thead>
+                        <tbody>
+                            @foreach ($coursesList as $course)
+                                <tr class="text-start">
+                                    <th scope="row">{{ $course->id }}</th>
+                                    <td class="text-truncate" style="max-width: 150px;">{{ $course->name }}</td>
+                                    <td class="d-none d-lg-table-cell text-truncate" style="max-width: 250px;">
+                                        {{ $course->description }}</td>
+                                    @php
+                                        $formatter = new NumberFormatter('pt_BR', NumberFormatter::CURRENCY);
+                                    @endphp
+                                    <td>{{ $formatter->formatCurrency($course->price, 'BRL') }}</td>
+                                    <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td>
+                                    <td class="d-none d-md-table-cell">
+                                        {{ \Carbon\Carbon::parse($course->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('course.destroy', ['id' => $course->id]) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            @method('DELETE')
 
-                    </tbody>
-                </table>
+                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                <a type="button" class="btn btn-success btn-sm"
+                                                    href="{{ route('course.edit', ['id' => $course->id]) }}">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <a type="button" class="btn btn-warning btn-sm"
+                                                    href="{{ route('course.show', ['id' => $course->id]) }}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Tem certeza que deseja excluir este registro?')">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
 
                 <div class="row mt-4">
                     <div class="col-12 d-flex justify-content-center">
