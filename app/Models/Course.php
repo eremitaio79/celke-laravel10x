@@ -20,4 +20,10 @@ class Course extends Model
         'image',
         'status',
     ];
+
+    // PE79: The relationship between course and classes. A course has many classes.
+    public function classe()
+    {
+        return $this->hasMany(Classe::class);
+    }
 }

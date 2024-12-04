@@ -18,4 +18,9 @@ class Classe extends Model
         'image',
         'course_id',
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

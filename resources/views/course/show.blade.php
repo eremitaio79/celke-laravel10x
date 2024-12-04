@@ -96,7 +96,6 @@
                     @else
                         <h5><span class="badge text-bg-danger">Inativo</span></h5>
                     @endif
-
                 </td>
             </tr>
             <tr>

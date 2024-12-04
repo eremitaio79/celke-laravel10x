@@ -14,10 +14,10 @@ class ClasseController extends Controller
     public function index(Course $course)
     {
 
-        $classes = Classe::where('course_id', $course->id)->orderBy('id', 'desc')->get();
+        $classes = Classe::with('course')->where('course_id', $course->id)->orderBy('id', 'desc')->get();
         // dd($classes);
 
-        // return route('classe.index');
+        return view('classes.index', ['classes' => $classes]);
     }
 
     /**
