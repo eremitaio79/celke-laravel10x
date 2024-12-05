@@ -6,7 +6,7 @@
 
 @section('links')
     <a href="{{ route('course.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Voltar aos cursos"
-        target="_self" class="btn btn-secondary">Voltar</a>
+        target="_self" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i></a>
     <a href="#" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
         data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
 @endsection
@@ -100,7 +100,7 @@
                     @csrf
                     @method('DELETE')
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a type="button" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                        <a href="{{ route('classe.edit', ['id' => $classe->id]) }}" type="button" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Editar esta aula">&nbsp;<i class="fa-solid fa-pen-to-square"></i>&nbsp;</a>
 
                         <a href="{{ route('classe.show', ['id' => $classe->id]) }}" type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"

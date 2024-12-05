@@ -50,9 +50,16 @@ class ClasseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Course $course)
     {
-        dd($id);
+        $selectedClasse = Classe::with('course')->where('id', $id)->first();
+        // dd($selectedClasse);
+
+        if (!$selectedClasse) {
+            return redirect()->route('classe.index')->with('msgError', 'Aula não encontrada.');
+        }
+
+        return view('classes.show', compact('selectedClasse'));
     }
 
     /**

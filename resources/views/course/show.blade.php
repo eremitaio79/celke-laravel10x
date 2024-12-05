@@ -5,17 +5,18 @@
 @section('footer_card', '...')
 
 @section('links')
-    <form id="deleteForm" action="{{ route('course.destroy', ['id' => $selectedCourse->id]) }}" method="POST" enctype="multipart/form-data">
+    <form id="deleteForm" action="{{ route('course.destroy', ['id' => $selectedCourse->id]) }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
         @method('DELETE')
 
-        <a href="{{ route('course.index') }}" target="_self" data-bs-toggle="tooltip"
-        data-bs-placement="bottom" data-bs-title="Lista de cursos" class="btn btn-secondary"><i class="fa-solid fa-list"></i></a>
-        <button type="button" onclick="showCustomConfirm(event)" data-bs-toggle="tooltip"
-        data-bs-placement="bottom" data-bs-title="Excluir este curso" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+        <a href="{{ route('course.index') }}" target="_self" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-title="Lista de cursos" class="btn btn-secondary"><i class="fa-solid fa-list"></i></a>
         <a href="{{ route('course.edit', ['id' => $selectedCourse->id]) }}" target="_self" data-bs-toggle="tooltip"
             data-bs-placement="bottom" data-bs-title="Editar este curso" class="btn btn-success"><i
                 class="fa-solid fa-pen-to-square"></i></a>
+        <button type="button" onclick="showCustomConfirm(event)" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-title="Excluir este curso" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
     </form>
 @endsection
 
