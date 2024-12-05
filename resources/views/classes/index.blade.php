@@ -5,8 +5,10 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary">Voltar</a>
-    <a href="#" class="btn btn-primary">Nova Aula</a>
+    <a href="{{ route('course.index') }}" data-bs-toggle="tooltip"
+    data-bs-placement="bottom" data-bs-title="Voltar aos cursos" target="_self" class="btn btn-secondary">Voltar</a>
+    <a href="#" class="btn btn-primary" data-bs-toggle="tooltip"
+    data-bs-placement="bottom" data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
 @endsection
 
 
@@ -93,10 +95,13 @@
                 <hr />
                 <form action="#" target="_self" method="POST" enctype="multipart/form-data">
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a type="button" class="btn btn-sm btn-success">&nbsp;<i
+                        <a type="button" class="btn btn-sm btn-success" data-bs-toggle="tooltip"
+                        data-bs-placement="top" data-bs-title="Editar esta aula">&nbsp;<i
                                 class="fa-solid fa-pen-to-square"></i>&nbsp;</a>
-                        <a type="button" class="btn btn-sm btn-warning">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
-                        <button type="submit" class="btn btn-sm btn-danger">&nbsp;<i
+                        <a type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
+                        data-bs-placement="top" data-bs-title="Detalhes desta aula">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
+                        <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="top" data-bs-title="Excluir esta aula">&nbsp;<i
                                 class="fa-solid fa-trash"></i>&nbsp;</button>
                     </div>
 

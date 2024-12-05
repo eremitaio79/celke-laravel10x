@@ -6,8 +6,10 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="{{ route('allclasse.index') }}" target="_self" class="btn btn-secondary">Todas as Aulas</a>
-    <a href="{{ route('course.create') }}" target="_self" class="btn btn-primary">Novo Curso</a>
+    <a href="{{ route('allclasse.index') }}" data-bs-toggle="tooltip"
+    data-bs-placement="bottom" data-bs-title="Ver todas as aulas" target="_self" class="btn btn-secondary">Todas as Aulas</a>
+    <a href="{{ route('course.create') }}" data-bs-toggle="tooltip"
+    data-bs-placement="bottom" data-bs-title="Cadastrar novo curso" target="_self" class="btn btn-primary">Novo Curso</a>
 @endsection
 
 
@@ -115,19 +117,23 @@
                                             @method('DELETE')
 
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                                <a type="button" class="btn btn-success btn-sm"
+                                                <a type="button" class="btn btn-success btn-sm" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Editar curso"
                                                     href="{{ route('course.edit', ['id' => $course->id]) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
-                                                <a type="button" class="btn btn-warning btn-sm"
+                                                <a type="button" class="btn btn-warning btn-sm" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Detalhes do curso"
                                                     href="{{ route('course.show', ['id' => $course->id]) }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
-                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Excluir curso"
                                                     onclick="return confirm('Tem certeza que deseja excluir este registro?')">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
-                                                <a type="button" class="btn btn-secondary btn-sm"
+                                                <a type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Aulas deste curso"
                                                     href="{{ route('classe.index', ['course' => $course->id]) }}">
                                                     <i class="fa-solid fa-clipboard"></i>
                                                 </a>
