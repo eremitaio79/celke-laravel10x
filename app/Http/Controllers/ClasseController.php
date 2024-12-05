@@ -52,7 +52,7 @@ class ClasseController extends Controller
      */
     public function show(string $id)
     {
-        dd('show');
+        dd($id);
     }
 
     /**

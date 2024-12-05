@@ -5,14 +5,16 @@
 @section('footer_card', '...')
 
 @section('links')
-    <form action="{{ route('course.destroy', ['id' => $selectedCourse->id]) }}" method="POST" enctype="multipart/form-data">
+    <form id="deleteForm" action="{{ route('course.destroy', ['id' => $selectedCourse->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('DELETE')
 
-        <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary"><i class="fa-solid fa-list"></i></a>
-        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este registro?')"
-            class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-        <a href="{{ route('course.edit', ['id' => $selectedCourse->id]) }}" target="_self" class="btn btn-success"><i
+        <a href="{{ route('course.index') }}" target="_self" data-bs-toggle="tooltip"
+        data-bs-placement="bottom" data-bs-title="Lista de cursos" class="btn btn-secondary"><i class="fa-solid fa-list"></i></a>
+        <button type="button" onclick="showCustomConfirm(event)" data-bs-toggle="tooltip"
+        data-bs-placement="bottom" data-bs-title="Excluir este curso" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+        <a href="{{ route('course.edit', ['id' => $selectedCourse->id]) }}" target="_self" data-bs-toggle="tooltip"
+            data-bs-placement="bottom" data-bs-title="Editar este curso" class="btn btn-success"><i
                 class="fa-solid fa-pen-to-square"></i></a>
     </form>
 @endsection
@@ -110,5 +112,28 @@
             </tr>
         </tbody>
     </table>
+
+    <script>
+        function showCustomConfirm(event) {
+            // Impede o envio do formulário
+            event.preventDefault();
+
+            Swal.fire({
+                title: '<strong style="font-size: 20px;">Deseja realmente excluir este curso?</strong>',
+                html: '<span style="font-size: 14px;">Esta operação não poderá ser desfeita.</span>',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar',
+                allowOutsideClick: false, // Impede fechar ao clicar fora do modal
+                allowEscapeKey: false // Impede fechar ao pressionar Esc
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submete o formulário manualmente após a confirmação
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+    </script>
 
 @endsection
