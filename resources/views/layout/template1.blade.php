@@ -42,7 +42,9 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('course.index') }}" target="_self"><i
-                                                class="fa-solid fa-book"></i>&nbsp;&nbsp;Cursos...</a></li>
+                                                class="fa-solid fa-book"></i>&nbsp;&nbsp;Lista de Cursos...</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('allclasse.index') }}" target="_self"><i
+                                                class="fa-solid fa-clipboard"></i>&nbsp;&nbsp;Todas as Aulas...</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

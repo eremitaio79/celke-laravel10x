@@ -102,8 +102,10 @@
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <a type="button" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Editar esta aula">&nbsp;<i class="fa-solid fa-pen-to-square"></i>&nbsp;</a>
-                        <a type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
+
+                        <a href="{{ route('classe.show', ['id' => $classe->id]) }}" type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Detalhes desta aula">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
+
                         <button type="button" onclick="showCustomConfirm(event)" class="btn btn-sm btn-danger"
                             data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir esta aula">&nbsp;<i
                                 class="fa-solid fa-trash"></i>&nbsp;</button>
