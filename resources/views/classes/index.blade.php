@@ -5,10 +5,10 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="{{ route('course.index') }}" data-bs-toggle="tooltip"
-    data-bs-placement="bottom" data-bs-title="Voltar aos cursos" target="_self" class="btn btn-secondary">Voltar</a>
-    <a href="#" class="btn btn-primary" data-bs-toggle="tooltip"
-    data-bs-placement="bottom" data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
+    <a href="{{ route('course.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Voltar aos cursos"
+        target="_self" class="btn btn-secondary">Voltar</a>
+    <a href="#" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
 @endsection
 
 
@@ -30,14 +30,14 @@
             const alertElement = document.getElementById("error-alert");
             if (alertElement) {
                 setTimeout(() => {
-                    alertElement.classList.remove("show"); // Remove a exibição
+                    alertElement.classList.remove("show"); // Remove show.
                     alertElement.classList.add("fade"); // Aplica a animação de saída
 
                     // Remove the DOM element after animation (500ms is the default time at Boorstrap)
                     setTimeout(() => {
                         alertElement.remove();
-                    }, 500); // Aguarda a animação terminar antes de remover
-                }, 5000); // 5000 ms = 5 segundos
+                    }, 500); // Wait animation finishes before hide.
+                }, 5000); // 5000 ms = 5 seconds.
             }
         });
     </script>
@@ -60,9 +60,9 @@
             if (alertElement) {
                 setTimeout(() => {
                     alertElement.classList.remove("show"); // Remove a exibição
-                    alertElement.classList.add("fade"); // Aplica a animação de saída
+                    alertElement.classList.add("fade"); // Exit animation is applied.
 
-                    // Remove the DOM element after animation (500ms is the default time at Boorstrap)
+                    // Remove the DOM element after animation (500ms is the default time at Boorstrap).
                     setTimeout(() => {
                         alertElement.remove();
                     }, 500); // Wait for animation to finish before hiding.
@@ -78,6 +78,7 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Aula {{ $classe->id }}: {{ $classe->name }}</h5>
+                <span style="font-size:12px;"><strong>Ordem da aula: {{ $classe->order_classe }}</strong></span>
                 <p class="card-text">{{ $classe->description }}</p>
                 <p>
                     @if ($classe->status == 1)
@@ -88,20 +89,23 @@
                 </p>
                 <p>
                     <span style="font-size: 12px;">
-                        Criado em: <strong>{{ \Carbon\Carbon::parse($classe->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}</strong>&nbsp;|&nbsp;
-                        Atualizado em: <strong>{{ \Carbon\Carbon::parse($classe->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}</strong>
+                        Criada em:
+                        <strong>{{ \Carbon\Carbon::parse($classe->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}</strong>&nbsp;|&nbsp;
+                        Atualizada em:
+                        <strong>{{ \Carbon\Carbon::parse($classe->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}</strong>
                     </span>
                 </p>
                 <hr />
-                <form action="#" target="_self" method="POST" enctype="multipart/form-data">
+                <form id="deleteForm" action="#" target="_self" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('DELETE')
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a type="button" class="btn btn-sm btn-success" data-bs-toggle="tooltip"
-                        data-bs-placement="top" data-bs-title="Editar esta aula">&nbsp;<i
-                                class="fa-solid fa-pen-to-square"></i>&nbsp;</a>
-                        <a type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip"
-                        data-bs-placement="top" data-bs-title="Detalhes desta aula">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
-                        <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                        data-bs-placement="top" data-bs-title="Excluir esta aula">&nbsp;<i
+                        <a type="button" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-title="Editar esta aula">&nbsp;<i class="fa-solid fa-pen-to-square"></i>&nbsp;</a>
+                        <a type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-title="Detalhes desta aula">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
+                        <button type="button" onclick="showCustomConfirm(event)" class="btn btn-sm btn-danger"
+                            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir esta aula">&nbsp;<i
                                 class="fa-solid fa-trash"></i>&nbsp;</button>
                     </div>
 
@@ -116,5 +120,28 @@
             Nenhuma aula disponível neste curso.
         </div>
     @endforelse
+
+    <script>
+        function showCustomConfirm(event) {
+            // Impede o envio do formulário
+            event.preventDefault();
+
+            Swal.fire({
+                title: '<strong style="font-size: 20px;">Deseja realmente excluir esta aula?</strong>',
+                html: '<span style="font-size: 14px;">Esta operação não poderá ser desfeita.</span>',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar',
+                allowOutsideClick: false, // Impede fechar ao clicar fora do modal
+                allowEscapeKey: false // Impede fechar ao pressionar Esc
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submete o formulário manualmente após a confirmação
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+    </script>
 
 @endsection

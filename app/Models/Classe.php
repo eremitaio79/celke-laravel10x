@@ -15,6 +15,7 @@ class Classe extends Model
         'name',
         'description',
         'status',
+        'order_classe',
         'image',
         'course_id',
     ];

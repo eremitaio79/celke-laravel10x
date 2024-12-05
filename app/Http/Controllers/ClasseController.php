@@ -14,7 +14,7 @@ class ClasseController extends Controller
     public function index(Course $course)
     {
 
-        $classes = Classe::with('course')->where('course_id', $course->id)->orderBy('id', 'desc')->get();
+        $classes = Classe::with('course')->where('course_id', $course->id)->orderBy('order_classe', 'asc')->get();
         // dd($classes);
 
         return view('classes.index', ['classes' => $classes]);
