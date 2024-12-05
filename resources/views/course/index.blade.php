@@ -6,10 +6,10 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="{{ route('allclasse.index') }}" data-bs-toggle="tooltip"
-    data-bs-placement="bottom" data-bs-title="Ver todas as aulas" target="_self" class="btn btn-secondary">Todas as Aulas</a>
-    <a href="{{ route('course.create') }}" data-bs-toggle="tooltip"
-    data-bs-placement="bottom" data-bs-title="Cadastrar novo curso" target="_self" class="btn btn-primary">Novo Curso</a>
+    <a href="{{ route('allclasse.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        data-bs-title="Ver todas as aulas" target="_self" class="btn btn-secondary">Todas as Aulas</a>
+    <a href="{{ route('course.create') }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        data-bs-title="Cadastrar novo curso" target="_self" class="btn btn-primary">Novo Curso</a>
 @endsection
 
 
@@ -111,8 +111,8 @@
                                         {{ \Carbon\Carbon::parse($course->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}
                                     </td>
                                     <td>
-                                        <form action="{{ route('course.destroy', ['id' => $course->id]) }}" method="POST"
-                                            enctype="multipart/form-data">
+                                        <form id="deleteForm" action="{{ route('course.destroy', ['id' => $course->id]) }}"
+                                            method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('DELETE')
 
@@ -127,9 +127,10 @@
                                                     href="{{ route('course.show', ['id' => $course->id]) }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
-                                                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" data-bs-title="Excluir curso"
-                                                    onclick="return confirm('Tem certeza que deseja excluir este registro?')">
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    data-bs-title="Excluir curso" {{-- onclick="return confirm('Tem certeza que deseja excluir este registro?')" --}}
+                                                    onclick="showCustomConfirm(event)">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                                 <a type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip"
@@ -162,5 +163,27 @@
         </div>
     </div>
 
+    <script>
+        function showCustomConfirm(event) {
+            // Impede o envio do formulário
+            event.preventDefault();
+
+            Swal.fire({
+                title: '<strong style="font-size: 20px;">Deseja realmente excluir este curso?</strong>',
+                html: '<span style="font-size: 14px;">Esta operação não poderá ser desfeita.</span>',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar',
+                allowOutsideClick: false, // Impede fechar ao clicar fora do modal
+                allowEscapeKey: false // Impede fechar ao pressionar Esc
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submete o formulário manualmente após a confirmação
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+    </script>
 
 @endsection

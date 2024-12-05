@@ -9,6 +9,7 @@
 
     <link href="{{ asset('css/bootstrap533/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome671/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sweetalert2_11.14.5/sweetalert2.min.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -97,16 +98,9 @@
 
 
     <script src="{{ asset('js/bootstrap533/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap533/tooltips.js') }}"></script>
     <script src="{{ asset('js/fontawesome671/all.js') }}"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            tooltipTriggerList.forEach(function(tooltipTriggerEl) {
-                new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-        });
-    </script>
+    <script src="{{ asset('js/sweetalert2_11.14.5/sweetalert2@11.js') }}"></script>
 
 </body>
 

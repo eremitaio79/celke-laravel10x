@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Original project route.
+// Welcome view is created by default in a new Laravel project.
 /* Route::get('/', function () {
     return view('welcome');
 }); */
