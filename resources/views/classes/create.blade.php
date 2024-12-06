@@ -16,7 +16,8 @@
 @section('footer_card', '...')
 
 @section('links')
-    <a href="#" class="btn btn-primary">x</a>
+    <a href="{{ route('classe.index', ['course' => $selectedCourse->id]) }}" class="btn btn-secondary" data-bs-toggle="tooltip"
+        data-bs-placement="bottom" data-bs-title="Cancelar este cadastro"><i class="fa-solid fa-arrow-left"></i></a>
 @endsection
 
 
@@ -124,8 +125,11 @@
             <div class="row mt-3">
                 <div class="col-12 text-end">
                     <hr />
-                    <button type="submit" class="btn btn-success">&nbsp;&nbsp;&nbsp;Salvar&nbsp;&nbsp;&nbsp;</button>
-                    <a href="{{ route('classe.index', ['course' => $selectedCourse->id]) }}" class="btn btn-secondary" target="_self">Cancelar</a>
+                    <button type="submit" class="btn btn-success" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" data-bs-title="Inserir esta aula no banco de dados">&nbsp;&nbsp;&nbsp;Salvar&nbsp;&nbsp;&nbsp;</button>
+                    <a href="{{ route('classe.index', ['course' => $selectedCourse->id]) }}" class="btn btn-secondary"
+                        target="_self" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" data-bs-title="Cancelar este cadastro">Cancelar</a>
                 </div>
             </div>
         </div>

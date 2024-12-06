@@ -7,8 +7,8 @@
 @section('links')
     <a href="{{ route('course.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Voltar aos cursos"
         target="_self" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i></a>
-    <a href="{{ route('classe.create', ['course' => $selectedCourse->id]) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
-        data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
+    <a href="{{ route('classe.create', ['course' => $selectedCourse->id]) }}" class="btn btn-primary" data-bs-toggle="tooltip"
+        data-bs-placement="bottom" data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
 @endsection
 
 
@@ -74,11 +74,12 @@
     @forelse ($classes as $classe)
         <div class="card mb-4 text-start">
             <div class="card-header">
-                Aula <strong>{{ $classe->id }}</strong>: <strong>{{ $classe->name }}</strong> > Curso: <strong>{{ $classe->course->name }}</strong>
+                <span style="color:#0060cf">Aula <strong>{{ $classe->id }}</strong>:
+                    <strong>{{ $classe->name }}</strong></span> <span style="font-size:12px;">&nbsp;&nbsp;>&nbsp;&nbsp;</span> Curso: <strong>{{ $classe->course->name }}</strong>
             </div>
             <div class="card-body">
                 <span style="font-size:12px;"><strong>Ordem da aula: {{ $classe->order_classe }}</strong></span>
-                <p class="card-text">{{ \Illuminate\Support\Str::limit($classe->description, 200, '...') }}</p>
+                <p class="card-text">{!! \Illuminate\Support\Str::limit($classe->description, 200, '...') !!}</p>
                 <p>
                     @if ($classe->status == 1)
                         <h5><span class="badge text-bg-success">Disponível</span></h5>
@@ -99,10 +100,12 @@
                     @csrf
                     @method('DELETE')
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <a href="{{ route('classe.edit', ['id' => $classe->id]) }}" type="button" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
+                        <a href="{{ route('classe.edit', ['id' => $classe->id]) }}" type="button"
+                            class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Editar esta aula">&nbsp;<i class="fa-solid fa-pen-to-square"></i>&nbsp;</a>
 
-                        <a href="{{ route('classe.show', ['id' => $classe->id]) }}" type="button" class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
+                        <a href="{{ route('classe.show', ['id' => $classe->id]) }}" type="button"
+                            class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Detalhes desta aula">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
 
                         <button type="button" onclick="showCustomConfirm(event)" class="btn btn-sm btn-danger"

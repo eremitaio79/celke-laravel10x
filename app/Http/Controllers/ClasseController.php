@@ -89,9 +89,25 @@ class ClasseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Classe $classe, string $id)
     {
-        dd('edit');
+        // dd('edit');
+        // dd($id);
+        $selectedClasse = Classe::with('course')->where('id', $id)->first();
+        // dd($selectedClasse);
+
+        // Loading all courses.
+        $courses = Course::all();
+
+        if (!$selectedClasse) {
+            return redirect()->route('classe.index')->with('msgError', 'Aula não encontrada.');
+        }
+
+        return view('classes.edit', [
+            'classeId' => $id,
+            'selectedClasse' => $selectedClasse,
+            'courses' => $courses // Sending course list for viewing.
+        ]);
     }
 
     /**
@@ -99,7 +115,7 @@ class ClasseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd($request);
     }
 
     /**
