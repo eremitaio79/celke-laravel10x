@@ -115,7 +115,29 @@ class ClasseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd($request);
+        // dd($request);
+        // dd($id);
+        $classe = Classe::find($id);
+
+        if (!$classe) {
+            return redirect()->route('classe.index')->with('msgError', 'Aula não encontrada.');
+        }
+
+        $classe->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
+            'order_classe' => $request->order_classe,
+            'image' => $request->image,
+            'course_id' => $request->course_id
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('classes', 'public');
+            $classe->update(['image' => $imagePath]);
+        }
+
+        return redirect()->route('classe.show', $id)->with('msgSuccess', 'A aula foi atualizada com sucesso!');
     }
 
     /**
