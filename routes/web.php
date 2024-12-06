@@ -41,4 +41,6 @@ Route::delete('/destroy-course/{id}', [CourseController::class, 'destroy'])->nam
 Route::get('/index-allclasse', [ClasseController::class, 'allClasses'])->name('allclasse.index'); // Index all classes method.
 Route::get('/index-classe/{course}', [ClasseController::class, 'index'])->name('classe.index'); // Index classe method.
 Route::get('/show-classe/{id}', [ClasseController::class, 'show'])->name('classe.show'); // Show classe method.
+Route::get('/create-classe/{course}', [ClasseController::class, 'create'])->name('classe.create'); // Create classe method.
 Route::get('/edit-classe/{id}', [ClasseController::class, 'edit'])->name('classe.edit'); // Edit classe method.
+Route::post('/store-classe', [ClasseController::class, 'store'])->name('classe.store'); // Store classe method.

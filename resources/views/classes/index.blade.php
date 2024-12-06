@@ -7,7 +7,7 @@
 @section('links')
     <a href="{{ route('course.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Voltar aos cursos"
         target="_self" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i></a>
-    <a href="#" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+    <a href="{{ route('classe.create', ['course' => $selectedCourse->id]) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
         data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
 @endsection
 
@@ -74,12 +74,11 @@
     @forelse ($classes as $classe)
         <div class="card mb-4 text-start">
             <div class="card-header">
-                Curso: <strong>{{ $classe->course->name }}</strong>
+                Aula <strong>{{ $classe->id }}</strong>: <strong>{{ $classe->name }}</strong> > Curso: <strong>{{ $classe->course->name }}</strong>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Aula {{ $classe->id }}: {{ $classe->name }}</h5>
                 <span style="font-size:12px;"><strong>Ordem da aula: {{ $classe->order_classe }}</strong></span>
-                <p class="card-text">{{ $classe->description }}</p>
+                <p class="card-text">{{ \Illuminate\Support\Str::limit($classe->description, 200, '...') }}</p>
                 <p>
                     @if ($classe->status == 1)
                         <h5><span class="badge text-bg-success">Disponível</span></h5>

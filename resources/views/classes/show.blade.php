@@ -51,7 +51,7 @@
 
                 <tr class="text-start">
                     <th scope="row">Conteúdo</th>
-                    <td>{{ $selectedClasse->description }}</td>
+                    <td>{!! $selectedClasse->description !!}</td>
                 </tr>
 
                 <tr class="text-start">
@@ -90,7 +90,7 @@
                     confirmButtonText: 'Sim, excluir!',
                     cancelButtonText: 'Cancelar',
                     allowOutsideClick: false, // Prevent closing when clicking outside the modal.
-                    allowEscapeKey: false // Prevent closing when clicking Esc key.
+                    allowEscapeKey: true // Prevent closing when clicking Esc key.
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Submit the form manually after confirmation.
