@@ -42,5 +42,6 @@ Route::get('/index-allclasse', [ClasseController::class, 'allClasses'])->name('a
 Route::get('/index-classe/{course}', [ClasseController::class, 'index'])->name('classe.index'); // Index classe method.
 Route::get('/show-classe/{id}', [ClasseController::class, 'show'])->name('classe.show'); // Show classe method.
 Route::get('/create-classe/{course}', [ClasseController::class, 'create'])->name('classe.create'); // Create classe method.
-Route::get('/edit-classe/{id}', [ClasseController::class, 'edit'])->name('classe.edit'); // Edit classe method.
 Route::post('/store-classe', [ClasseController::class, 'store'])->name('classe.store'); // Store classe method.
+Route::get('/edit-classe/{id}', [ClasseController::class, 'edit'])->name('classe.edit'); // Edit classe method.
+Route::put('/update-classe/{id}', [ClasseController::class, 'update'])->name('classe.update'); // Update classe method.

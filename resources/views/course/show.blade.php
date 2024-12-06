@@ -69,7 +69,7 @@
             </tr>
             <tr>
                 <th scope="row">Descrição</th>
-                <td>{{ $selectedCourse->description }}</td>
+                <td>{!! $selectedCourse->description !!}</td>
             </tr>
             <tr>
                 <th scope="row">Preço</th>
