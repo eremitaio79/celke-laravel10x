@@ -17,7 +17,10 @@ class ClasseController extends Controller
         $classes = Classe::with('course')->where('course_id', $course->id)->orderBy('order_classe', 'asc')->get();
         // dd($classes);
 
-        return view('classes.index', ['classes' => $classes]);
+        return view('classes.index', [
+            'classes' => $classes,
+            'selectedCourse' => $course, // Passa o curso selecionado
+        ]);
     }
 
     /**
@@ -34,9 +37,14 @@ class ClasseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Course $course)
     {
-        dd('create');
+        // Use diretamente o curso passado pelo Route Model Binding
+        $selectedCourse = $course->id;
+
+        // dd($selectedCourse);
+
+        return view('classes.create', ['selectedCourse' => $course]);
     }
 
     /**
@@ -44,7 +52,23 @@ class ClasseController extends Controller
      */
     public function store(Request $request)
     {
-        dd('store');
+        // dd('store');
+        // dd($request);
+
+        // PE79: Armazena todos os valores recebidos na tabela do banco de dados.
+        // Course::create($request->all());
+
+        // PE79: Armazena os dados nas colunas indicadas individualmente dentro de create.
+        Classe::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
+            'order_classe' => $request->order_classe,
+            'image' => $request->image,
+            'course_id' => $request->course_id
+        ]);
+
+        return redirect()->route('classe.index', ['course' => $request->course_id])->with('msgSuccess', 'Curso cadastrado com sucesso!');
     }
 
     /**
