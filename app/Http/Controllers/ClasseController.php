@@ -145,6 +145,7 @@ class ClasseController extends Controller
      */
     public function destroy(string $id)
     {
+        // The delete method needs to be implemented.
         dd('destroy/delete');
     }
 }
