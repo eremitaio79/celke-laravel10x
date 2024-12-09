@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classe;
 use App\Models\Course;
+use Exception;
 use Illuminate\Http\Request;
 
 class ClasseController extends Controller
@@ -157,12 +158,14 @@ class ClasseController extends Controller
      */
     public function destroy(Classe $classe)
     {
-        // The delete method needs to be implemented.
-        // This method can be implemented in a similar way to the courses method.
-        // dd('destroy/delete');
-        // dd($id);
-        $classe->delete();
+        try {
+            // dd('destroy/delete');
+            // dd($id);
+            $classe->delete();
 
-        return redirect()->route('classe.index', ['course' => $classe->course_id])->with('msgSuccess', 'Aula excluída com sucesso!');
+            return redirect()->route('classe.index', ['course' => $classe->course_id])->with('msgSuccess', 'Aula excluída com sucesso!');
+        } catch (Exception $error) {
+            return redirect()->route('classe.index', ['course' => $classe->course_id])->with('msgError', 'Aula não excluída!');
+        }
     }
 }
