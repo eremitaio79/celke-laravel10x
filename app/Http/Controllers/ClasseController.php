@@ -119,7 +119,7 @@ class ClasseController extends Controller
         // dd($request);
         // dd($id);
 
-        // Validação dos dados recebidos
+        // Validate the request data.
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -155,10 +155,14 @@ class ClasseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Classe $classe)
     {
         // The delete method needs to be implemented.
         // This method can be implemented in a similar way to the courses method.
-        dd('destroy/delete');
+        // dd('destroy/delete');
+        // dd($id);
+        $classe->delete();
+
+        return redirect()->route('classe.index', ['course' => $classe->course_id])->with('msgSuccess', 'Aula excluída com sucesso!');
     }
 }

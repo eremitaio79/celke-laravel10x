@@ -45,3 +45,4 @@ Route::get('/create-classe/{course}', [ClasseController::class, 'create'])->name
 Route::post('/store-classe', [ClasseController::class, 'store'])->name('classe.store'); // Store classe method.
 Route::get('/edit-classe/{id}', [ClasseController::class, 'edit'])->name('classe.edit'); // Edit classe method.
 Route::put('/update-classe/{id}', [ClasseController::class, 'update'])->name('classe.update'); // Update classe method.
+Route::delete('/destroy-classe/{classe}', [ClasseController::class, 'destroy'])->name('classe.destroy'); // Delete classe method.

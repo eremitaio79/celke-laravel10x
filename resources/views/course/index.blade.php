@@ -122,17 +122,20 @@
                                                     href="{{ route('course.edit', ['id' => $course->id]) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
+
                                                 <a type="button" class="btn btn-warning btn-sm" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Detalhes do curso"
                                                     href="{{ route('course.show', ['id' => $course->id]) }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
+
                                                 <button type="button" class="btn btn-danger btn-sm"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     data-bs-title="Excluir curso" {{-- onclick="return confirm('Tem certeza que deseja excluir este registro?')" --}}
                                                     onclick="showCustomConfirm(event)">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
+
                                                 <a type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Aulas deste curso"
                                                     href="{{ route('classe.index', ['course' => $course->id]) }}">
@@ -176,7 +179,7 @@
                 confirmButtonText: 'Sim, excluir!',
                 cancelButtonText: 'Cancelar',
                 allowOutsideClick: false, // Impede fechar ao clicar fora do modal
-                allowEscapeKey: false // Impede fechar ao pressionar Esc
+                allowEscapeKey: true // Impede fechar ao pressionar Esc
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Submete o formulário manualmente após a confirmação
