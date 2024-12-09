@@ -92,7 +92,7 @@
                                 <th scope="col" class="text-truncate" width="120">Preço</th>
                                 <th scope="col" width="100">Status</th>
                                 <th scope="col" class="d-none d-md-table-cell" width="220">Criação</th>
-                                <th scope="col" width="100">Ações</th>
+                                <th scope="col" width="150">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -136,10 +136,16 @@
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
 
-                                                <a type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top" data-bs-title="Aulas deste curso"
+                                                <a type="button" class="btn btn-secondary btn-sm position-relative"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    data-bs-title="Aulas deste curso: {{ $course->classe_count }} aulas"
                                                     href="{{ route('classe.index', ['course' => $course->id]) }}">
                                                     <i class="fa-solid fa-clipboard"></i>
+                                                    <span
+                                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                        {{ $course->classe_count }}
+                                                        <span class="visually-hidden">0</span>
+                                                    </span>
                                                 </a>
                                             </div>
                                         </form>

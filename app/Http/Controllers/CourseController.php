@@ -15,7 +15,8 @@ class CourseController extends Controller
     {
         // dd('List all courses in the table.');
 
-        $coursesList = Course::orderByDesc('id')->paginate(10);
+        /* withCount() returns number of classes in the relashionship. */
+        $coursesList = Course::withCount('classe')->orderByDesc('id')->paginate(10);
         // $coursesList = Course::where('status', 1)->orderByDesc('id')->paginate(5);
         // dd($coursesList);
 
