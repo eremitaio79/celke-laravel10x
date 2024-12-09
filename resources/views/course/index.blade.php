@@ -3,7 +3,10 @@
 {{-- SECTIONS --}}
 @section('title', 'CURSOS')
 @section('title_card', 'Listagem dos cursos cadastrados')
-@section('footer_card', '...')
+
+@section('footer_card')
+    Total de cursos disponíveis: <strong>{{ $totalCourses }} cursos</strong>.
+@endsection
 
 @section('links')
     <a href="{{ route('allclasse.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
