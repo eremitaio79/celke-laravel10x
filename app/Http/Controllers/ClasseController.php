@@ -98,6 +98,7 @@ class ClasseController extends Controller
 
         // Loading all courses.
         $courses = Course::all();
+        // dd($courses);
 
         if (!$selectedClasse) {
             return redirect()->route('classe.index')->with('msgError', 'Aula não encontrada.');
@@ -117,7 +118,18 @@ class ClasseController extends Controller
     {
         // dd($request);
         // dd($id);
-        $classe = Classe::find($id);
+
+        // Validação dos dados recebidos
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'required|boolean',
+            'order_classe' => 'nullable|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'course_id' => 'required|exists:courses,id',
+        ]);
+
+        $classe = Classe::findOrFail($id);
 
         if (!$classe) {
             return redirect()->route('classe.index')->with('msgError', 'Aula não encontrada.');
@@ -146,7 +158,7 @@ class ClasseController extends Controller
     public function destroy(string $id)
     {
         // The delete method needs to be implemented.
-        // This method can be implemented ina similar way to the courses method.
+        // This method can be implemented in a similar way to the courses method.
         dd('destroy/delete');
     }
 }
