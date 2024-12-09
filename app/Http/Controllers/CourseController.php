@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use Exception;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -122,15 +123,20 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        // dd($id);
-        $course = Course::find($id);
+        try {
+            // dd($id);
+            $course = Course::findOrFail($id);
 
-        if (!$course) {
-            return redirect()->route('course.index')->with('msgError', 'Curso não encontrado.');
+            if (!$course) {
+                return redirect()->route('course.index')->with('msgError', 'Curso não encontrado.');
+            }
+
+            $course->delete();
+
+            return redirect()->route('course.index')->with('msgSuccess', 'O curso foi excluído com sucesso!');
+        } catch (Exception $error) {
+            // dd($error);
+            return redirect()->route('course.index')->with('msgError', 'O curso não foi excluído pois contém aulas associadas a ele!');
         }
-
-        $course->delete();
-
-        return redirect()->route('course.index')->with('msgSuccess', 'O registro foi excluído com sucesso!');
     }
 }
