@@ -18,11 +18,16 @@ class CourseController extends Controller
 
         /* withCount() returns number of classes in the relashionship. */
         $coursesList = Course::withCount('classe')->orderByDesc('id')->paginate(10);
+        $totalCourses = $coursesList->total(); // Contagem total de courses
+
         // $coursesList = Course::where('status', 1)->orderByDesc('id')->paginate(5);
         // dd($coursesList);
 
         // return 'Course index method.';
-        return view('course.index', ['coursesList' => $coursesList]);
+        return view('course.index', [
+            'coursesList' => $coursesList,
+            'totalCourses' => $totalCourses,
+        ]);
     }
 
     /**
