@@ -75,7 +75,9 @@
         <div class="card mb-4 text-start">
             <div class="card-header">
                 <span style="color:#0060cf">Aula <strong>{{ $classe->id }}</strong>:
-                    <strong>{{ $classe->name }}</strong></span> <span style="font-size:12px;">&nbsp;&nbsp;>&nbsp;&nbsp;</span> Curso: <strong>{{ $classe->course->name }}</strong>
+                    <strong>{{ $classe->name }}</strong></span> <span
+                    style="font-size:12px;">&nbsp;&nbsp;>&nbsp;&nbsp;</span> Curso:
+                <strong>{{ $classe->course->name }}</strong>
             </div>
             <div class="card-body">
                 <span style="font-size:12px;"><strong>Ordem da aula: {{ $classe->order_classe }}</strong></span>
@@ -96,9 +98,12 @@
                     </span>
                 </p>
                 <hr />
-                <form id="deleteForm" action="#" target="_self" method="POST" enctype="multipart/form-data">
+                <form id="deleteForm-{{ $classe->id }}"
+                    action="{{ route('classe.destroy', ['classe' => $classe->id]) }}" target="_self" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('DELETE')
+
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <a href="{{ route('classe.edit', ['id' => $classe->id]) }}" type="button"
                             class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -108,9 +113,11 @@
                             class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Detalhes desta aula">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
 
-                        <button type="button" onclick="showCustomConfirm(event)" class="btn btn-sm btn-danger"
-                            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir esta aula">&nbsp;<i
-                                class="fa-solid fa-trash"></i>&nbsp;</button>
+                        <button type="button" onclick="showCustomConfirm(event, 'deleteForm-{{ $classe->id }}')"
+                            class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-title="Excluir esta aula">
+                            &nbsp;<i class="fa-solid fa-trash"></i>&nbsp;
+                        </button>
                     </div>
 
 
@@ -126,7 +133,7 @@
     @endforelse
 
     <script>
-        function showCustomConfirm(event) {
+        function showCustomConfirm(event, formId) {
             // Impede o envio do formulário
             event.preventDefault();
 
@@ -138,11 +145,11 @@
                 confirmButtonText: 'Sim, excluir!',
                 cancelButtonText: 'Cancelar',
                 allowOutsideClick: false, // Impede fechar ao clicar fora do modal
-                allowEscapeKey: false // Impede fechar ao pressionar Esc
+                allowEscapeKey: true // Impede fechar ao pressionar Esc
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Submete o formulário manualmente após a confirmação
-                    document.getElementById('deleteForm').submit();
+                    // Submete o formulário correto manualmente após a confirmação
+                    document.getElementById(formId).submit();
                 }
             });
         }

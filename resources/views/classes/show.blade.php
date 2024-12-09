@@ -11,7 +11,10 @@
         $tooltipText = 'Voltar para a lista de aulas do curso: ' . $selectedClasse->course->name;
     @endphp
 
-    <form action="#" target="_self" enctype="multipart/form-data">
+    <form id="deleteForm" action="{{ route('classe.destroy', ['classe' => $selectedClasse->id]) }}" method="post" target="_self" enctype="multipart/form-data">
+        @csrf
+        @method('DELETE')
+
         <a href="{{ route('classe.index', ['course' => $selectedClasse->course_id]) }}" data-bs-toggle="tooltip"
             data-bs-placement="bottom" data-bs-title="{{ $tooltipText }}" class="btn btn-secondary">
             <i class="fa-solid fa-arrow-left"></i>
@@ -30,6 +33,64 @@
 
 
 @section('content')
+
+    {{-- MSG ERROR --}}
+    @if (session('msgError'))
+        <div id="error-alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <span class="text-start">
+                <strong>{{ session('msgError') }}</strong>
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <script>
+        // JavaScript para fazer o alerta desaparecer e liberar o espaço
+        document.addEventListener("DOMContentLoaded", function() {
+            const alertElement = document.getElementById("error-alert");
+            if (alertElement) {
+                setTimeout(() => {
+                    alertElement.classList.remove("show"); // Remove show.
+                    alertElement.classList.add("fade"); // Aplica a animação de saída
+
+                    // Remove the DOM element after animation (500ms is the default time at Boorstrap)
+                    setTimeout(() => {
+                        alertElement.remove();
+                    }, 500); // Wait animation finishes before hide.
+                }, 5000); // 5000 ms = 5 seconds.
+            }
+        });
+    </script>
+
+
+    {{-- MSG SUCCESS --}}
+    @if (session('msgSuccess'))
+        <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span class="text-start">
+                <strong>{{ session('msgSuccess') }}</strong>
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <script>
+        // JavaScript para fazer o alerta desaparecer e liberar o espaço
+        document.addEventListener("DOMContentLoaded", function() {
+            const alertElement = document.getElementById("success-alert");
+            if (alertElement) {
+                setTimeout(() => {
+                    alertElement.classList.remove("show"); // Remove a exibição
+                    alertElement.classList.add("fade"); // Exit animation is applied.
+
+                    // Remove the DOM element after animation (500ms is the default time at Boorstrap).
+                    setTimeout(() => {
+                        alertElement.remove();
+                    }, 500); // Wait for animation to finish before hiding.
+                }, 5000); // 5000 ms = 5 seconds.
+            }
+        });
+    </script>
+
 
     {{-- {{ $selectedClasse->course->name }} --}}
 
