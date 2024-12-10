@@ -6,6 +6,7 @@ use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log; // Courses log.
 
 class CourseController extends Controller
 {
@@ -61,6 +62,11 @@ class CourseController extends Controller
             'image' => $request->image,
             // 'status' => $request->status ? 1 : 0
             'status' => $request->status
+        ]);
+
+        // Save course creating log.
+        Log::info('PE79: Curso cadastrado', [
+            $courseRequest,
         ]);
 
         return redirect()->route('course.index')->with('msgSuccess', 'Curso cadastrado com sucesso!');
