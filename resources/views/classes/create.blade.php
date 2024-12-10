@@ -131,7 +131,7 @@
             </div>
 
             <div class="col-4 text-start">
-                <label for="status">Status</label>
+                <label for="status">Status da Aula</label>
                 <select name="status" id="status" class="form-control">
                     <option value="1" selected>Ativa</option>
                     <option value="0">Inativa</option>
@@ -140,8 +140,8 @@
 
             <div class="col-4 text-start">
                 <label for="order_classe">Ordem da Aula</label>
-                <input type="text" id="order_classe" name="order_classe" class="form-control"
-                    value="{{ old('order_classe') }}" placeholder="Informe a ordem da aula" required />
+                <input type="number" min="1" id="order_classe" name="order_classe" class="form-control"
+                    value="{{ old('order_classe', $nextOrder) }}" placeholder="Informe a ordem da aula" required />
             </div>
 
             <div class="row mt-3">

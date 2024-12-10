@@ -102,14 +102,21 @@
                             @foreach ($coursesList as $course)
                                 <tr class="text-start">
                                     <th scope="row">{{ $course->id }}</th>
-                                    <td class="text-truncate" style="max-width: 150px;">{{ $course->name }}</td>
+                                    <td class="text-truncate" style="max-width: 150px;"><strong>{{ $course->name }}</strong></td>
                                     <td class="d-none d-lg-table-cell text-truncate" style="max-width: 250px;">
                                         {{ $course->description }}</td>
                                     @php
                                         $formatter = new NumberFormatter('pt_BR', NumberFormatter::CURRENCY);
                                     @endphp
                                     <td>{{ $formatter->formatCurrency($course->price, 'BRL') }}</td>
-                                    <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td>
+                                    {{-- <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td> --}}
+                                    <td>
+                                        @if ($course->status == 1)
+                                            <h5><span class="badge text-bg-success">Ativo</span></h5>
+                                        @else
+                                            <h5><span class="badge text-bg-danger">Inativo</span></h5>
+                                        @endif
+                                    </td>
                                     <td class="d-none d-md-table-cell">
                                         {{ \Carbon\Carbon::parse($course->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}
                                     </td>

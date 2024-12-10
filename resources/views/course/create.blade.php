@@ -69,7 +69,7 @@
             </div>
 
             <div class="col-4 text-start">
-                <label for="status">Status</label>
+                <label for="status">Status do Curso</label>
                 <select name="status" id="status" class="form-control">
                     <option value="1" selected>Ativo</option>
                     <option value="0">Inativo</option>
