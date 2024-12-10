@@ -46,39 +46,49 @@ class ClasseController extends Controller
      */
     public function create(Course $course)
     {
-        // Use diretamente o curso passado pelo Route Model Binding
-        $selectedCourse = $course->id;
+        // Obtém o maior valor de order_classe para o curso atual
+        $lastOrder = Classe::where('course_id', $course->id)->max('order_classe');
 
-        // dd($selectedCourse);
+        // Incrementa o valor ou define como 1 se não houver aulas
+        $nextOrder = $lastOrder ? $lastOrder + 1 : 1;
 
-        return view('classes.create', ['selectedCourse' => $course]);
+        // Retorna a view com os dados necessários
+        return view('classes.create', [
+            'selectedCourse' => $course,  // Curso selecionado
+            'nextOrder' => $nextOrder,    // Próxima ordem calculada
+        ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, ClasseRequest $classeRequest)
     {
-        // dd('store');
-        // dd($request);
-
+        // Valida os dados recebidos
         $classeRequest->validated();
 
-        // PE79: Armazena todos os valores recebidos na tabela do banco de dados.
-        // Course::create($request->all());
+        // Obtém o maior valor de `order_classe` para o curso específico
+        $lastOrder = Classe::where('course_id', $request->course_id)->max('order_classe');
 
-        // PE79: Armazena os dados nas colunas indicadas individualmente dentro de create.
+        // Incrementa o valor para atribuir ao novo registro
+        $nextOrder = $lastOrder ? $lastOrder + 1 : 1; // Se não houver registros, começa com 1
+
+        // Cria a nova aula com o próximo valor de ordem
         Classe::create([
             'name' => $request->name,
             'description' => $request->description,
             'status' => $request->status,
-            'order_classe' => $request->order_classe,
+            'order_classe' => $nextOrder, // Atribui o próximo número
             'image' => $request->image,
-            'course_id' => $request->course_id
+            'course_id' => $request->course_id,
         ]);
 
-        return redirect()->route('classe.index', ['course' => $request->course_id])->with('msgSuccess', 'Curso cadastrado com sucesso!');
+        return redirect()
+            ->route('classe.index', ['course' => $request->course_id])
+            ->with('msgSuccess', 'Aula cadastrada com sucesso!');
     }
+
 
     /**
      * Display the specified resource.
