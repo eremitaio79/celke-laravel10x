@@ -95,7 +95,8 @@
     {{-- {{ $selectedClasse->course->name }} --}}
 
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        {{-- <table class="table table-striped table-hover"> --}}
+        <table class="table">
             <thead>
                 <tr class="text-start">
                     <th scope="col" width="220">Campo</th>

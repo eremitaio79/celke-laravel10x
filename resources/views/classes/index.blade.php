@@ -2,7 +2,10 @@
 
 @section('title', 'AULAS DO CURSO')
 @section('title_card', 'Aulas do curso selecionado')
-@section('footer_card', '...')
+
+@section('footer_card')
+    Total de aulas: <strong>{{ $totalClasses }} aulas</strong> neste curso.
+@endsection
 
 @section('links')
     <a href="{{ route('course.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Voltar aos cursos"
