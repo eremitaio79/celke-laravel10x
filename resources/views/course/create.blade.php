@@ -41,7 +41,7 @@
             <div class="col-9 text-start">
                 <label for="name">Nome do Curso</label>
                 <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}"
-                    placeholder="Informe o nome do curso" />
+                    placeholder="Informe o nome do curso" required />
             </div>
 
             <div class="col-3 text-start">
@@ -50,7 +50,7 @@
                     <span class="input-group-text" id="basic-addon1">R$</span>
                     <input type="number" step="0.01" min="0.00" id="price" name="price" class="form-control"
                         value="{{ old('price') }}" placeholder="Informe o preço do curso" aria-label="price"
-                        aria-describedby="basic-addon1">
+                        aria-describedby="basic-addon1" required />
                 </div>
             </div>
         </div>

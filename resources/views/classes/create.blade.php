@@ -81,6 +81,28 @@
     </script>
     {{-- {{ $selectedCourse->id }} --}}
 
+    {{-- Request validations --}}
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @foreach ($errors->all() as $error)
+                {!! $error !!}<br />
+            @endforeach
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <script>
+        // Aguarda 5 segundos e remove o alerta.
+        setTimeout(() => {
+            const alert = document.querySelector('.alert');
+            if (alert) {
+                alert.classList.remove('show'); // Esconde o alerta.
+                alert.classList.add('fade'); // Aplica a transição de saída.
+                setTimeout(() => alert.remove(), 300); // Remove do DOM após a animação.
+            }
+        }, 5000); // 5 segundos.
+    </script>
+
     <form action="{{ route('classe.store') }}" method="POST" enctype="multipart/form-data" target="_self">
         @csrf
         @method('POST')
@@ -125,11 +147,11 @@
             <div class="row mt-3">
                 <div class="col-12 text-end">
                     <hr />
-                    <button type="submit" class="btn btn-success" data-bs-toggle="tooltip"
-                    data-bs-placement="bottom" data-bs-title="Inserir esta aula no banco de dados">&nbsp;&nbsp;&nbsp;Salvar&nbsp;&nbsp;&nbsp;</button>
+                    <button type="submit" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Inserir esta aula no banco de dados">&nbsp;&nbsp;&nbsp;Salvar&nbsp;&nbsp;&nbsp;</button>
                     <a href="{{ route('classe.index', ['course' => $selectedCourse->id]) }}" class="btn btn-secondary"
-                        target="_self" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" data-bs-title="Cancelar este cadastro">Cancelar</a>
+                        target="_self" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Cancelar este cadastro">Cancelar</a>
                 </div>
             </div>
         </div>

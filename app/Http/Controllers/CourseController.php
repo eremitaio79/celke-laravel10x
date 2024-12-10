@@ -97,9 +97,11 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, CourseRequest $courseRequest)
     {
         // dd($id);
+
+        $courseRequest->validated();
 
         $course = Course::find($id);
         // dd($id);

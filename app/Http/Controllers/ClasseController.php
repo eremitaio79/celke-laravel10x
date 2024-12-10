@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClasseRequest;
 use App\Models\Classe;
 use App\Models\Course;
 use Exception;
@@ -51,10 +52,12 @@ class ClasseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, ClasseRequest $classeRequest)
     {
         // dd('store');
         // dd($request);
+
+        $classeRequest->validated();
 
         // PE79: Armazena todos os valores recebidos na tabela do banco de dados.
         // Course::create($request->all());
@@ -115,10 +118,12 @@ class ClasseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, ClasseRequest $classeRequest)
     {
         // dd($request);
         // dd($id);
+
+        $classeRequest->validated();
 
         // Validate the request data.
         $validated = $request->validate([

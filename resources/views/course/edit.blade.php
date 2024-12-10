@@ -11,6 +11,28 @@
 
 @section('content')
 
+    {{-- Request validations --}}
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @foreach ($errors->all() as $error)
+                {!! $error !!}<br />
+            @endforeach
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <script>
+        // Aguarda 5 segundos e remove o alerta
+        setTimeout(() => {
+            const alert = document.querySelector('.alert');
+            if (alert) {
+                alert.classList.remove('show'); // Esconde o alerta
+                alert.classList.add('fade'); // Aplica a transição de saída
+                setTimeout(() => alert.remove(), 300); // Remove do DOM após a animação
+            }
+        }, 5000); // 5 segundos
+    </script>
+
     <form action="{{ route('course.update', ['id' => $editCourse->id]) }}" method="POST" enctype="multipart/form-data"
         target="_self">
         @csrf
