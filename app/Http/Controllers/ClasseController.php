@@ -16,12 +16,17 @@ class ClasseController extends Controller
     public function index(Course $course)
     {
 
+        // Conta o número de aulas para o curso específico
+        $totalClasses = Classe::where('course_id', $course->id)->count();
+
         $classes = Classe::with('course')->where('course_id', $course->id)->orderBy('order_classe', 'asc')->get();
+        // $totalClasses = $classes->total();
         // dd($classes);
 
         return view('classes.index', [
             'classes' => $classes,
-            'selectedCourse' => $course, // Passa o curso selecionado
+            'selectedCourse' => $course, // Passa o curso selecionado.
+            'totalClasses' => $totalClasses, // Passa a contagem das aulas.
         ]);
     }
 
