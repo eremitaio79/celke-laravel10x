@@ -11,7 +11,8 @@ class CourseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        // return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,19 @@ class CourseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // The validation rules should be written here.
+            'name' => 'required',
+            'price' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'O campo <strong>Nome do Curso</strong> é obrigatório.',
+            'price.required' => 'O campo <strong>Preço</strong> é obrigatório.',
+            // 'email.email' => 'O Email deve estar em um formato válido.',
+            // 'password.min' => 'A senha deve ter no mínimo :min caracteres.',
         ];
     }
 }
