@@ -65,21 +65,21 @@ class ClasseController extends Controller
      */
     public function store(Request $request, ClasseRequest $classeRequest)
     {
-        // Valida os dados recebidos
+        // Valida os dados recebidos.
         $classeRequest->validated();
 
-        // Obtém o maior valor de `order_classe` para o curso específico
+        // Obtém o maior valor de `order_classe` para o curso específico.
         $lastOrder = Classe::where('course_id', $request->course_id)->max('order_classe');
 
         // Incrementa o valor para atribuir ao novo registro
-        $nextOrder = $lastOrder ? $lastOrder + 1 : 1; // Se não houver registros, começa com 1
+        $nextOrder = $lastOrder ? $lastOrder + 1 : 1; // Se não houver registros, começa com 1.
 
-        // Cria a nova aula com o próximo valor de ordem
+        // Cria a nova aula com o próximo valor de ordem.
         Classe::create([
             'name' => $request->name,
             'description' => $request->description,
             'status' => $request->status,
-            'order_classe' => $nextOrder, // Atribui o próximo número
+            'order_classe' => $nextOrder, // Atribui o próximo número.
             'image' => $request->image,
             'course_id' => $request->course_id,
         ]);
