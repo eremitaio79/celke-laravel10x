@@ -4,6 +4,20 @@
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+/* Bootstrap framework is imported here START. */
+import 'bootstrap/dist/css/bootstrap.min.css'; // Estilos do Bootstrap
+import * as bootstrap from 'bootstrap'; // Importa como módulo ES
+
+// Inicializa os tooltips do Bootstrap
+document.addEventListener('DOMContentLoaded', () => {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(tooltipTriggerEl => {
+        new bootstrap.Tooltip(tooltipTriggerEl); // Referência explícita ao objeto bootstrap
+    });
+});
+/* Bootstrap framework is imported here END. */
+
+
 import axios from 'axios';
 window.axios = axios;
 
