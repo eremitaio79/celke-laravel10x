@@ -7,7 +7,10 @@
 
     <title>@yield('title')</title>
 
-    <link href="{{ asset('css/bootstrap533/bootstrap.min.css') }}" rel="stylesheet">
+    {{-- Bootstrap is now included by Vite --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- <link href="{{ asset('css/bootstrap533/bootstrap.min.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/fontawesome671/all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sweetalert2_11.14.5/sweetalert2.min.css') }}" rel="stylesheet">
 </head>
@@ -68,8 +71,22 @@
         {{-- CONTAINER END --}}
     </div>
 
+
+    {{-- CONTENT START --}}
     <div class="container">
-        <div class="row mt-4 mb-4">
+        <div class="row mt-4">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}" target="_self">Home</a></li>
+                        @yield('bc1')
+                        @yield('bc2')
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row mb-4">
             <div class="col-12">
 
                 {{-- CARD START --}}
@@ -97,10 +114,11 @@
             </div>
         </div>
     </div>
+    {{-- CONTENT END --}}
 
 
-    <script src="{{ asset('js/bootstrap533/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap533/tooltips.js') }}"></script>
+    {{-- <script src="{{ asset('js/bootstrap533/bootstrap.bundle.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/bootstrap533/tooltips.js') }}"></script> --}}
     <script src="{{ asset('js/fontawesome671/all.js') }}"></script>
     <script src="{{ asset('js/sweetalert2_11.14.5/sweetalert2@11.js') }}"></script>
 

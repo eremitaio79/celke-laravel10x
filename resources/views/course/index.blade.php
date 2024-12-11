@@ -4,6 +4,14 @@
 @section('title', 'CURSOS')
 @section('title_card', 'Listagem dos cursos cadastrados')
 
+@section('bc1')
+    <li class="breadcrumb-item active" aria-current="page">Cursos</li>
+@endsection
+
+@section('bc2')
+
+@endsection
+
 @section('footer_card')
     Total de cursos disponíveis: <strong>{{ $totalCourses }} cursos</strong>.
 @endsection
@@ -102,7 +110,8 @@
                             @foreach ($coursesList as $course)
                                 <tr class="text-start">
                                     <th scope="row">{{ $course->id }}</th>
-                                    <td class="text-truncate" style="max-width: 150px;"><strong>{{ $course->name }}</strong></td>
+                                    <td class="text-truncate" style="max-width: 150px;"><strong>{{ $course->name }}</strong>
+                                    </td>
                                     <td class="d-none d-lg-table-cell text-truncate" style="max-width: 250px;">
                                         {{ $course->description }}</td>
                                     @php
