@@ -1,7 +1,7 @@
 @extends('layout.template1')
 
 @section('title', 'AULAS DO CURSO')
-@section('title_card', 'Aulas do curso selecionado')
+@section('title_card', 'Aulas do Curso Selecionado')
 
 {{-- Breadcrumb START --}}
 @section('bc1')

@@ -2,7 +2,7 @@
 
 {{-- SECTIONS --}}
 @section('title', 'CURSOS')
-@section('title_card', 'Listagem dos cursos cadastrados')
+@section('title_card', 'Listagem dos Cursos Cadastrados')
 
 @section('bc1')
     <li class="breadcrumb-item active" aria-current="page"><strong>Cursos</strong></li>
