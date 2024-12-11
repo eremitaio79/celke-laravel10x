@@ -5,7 +5,7 @@
 @section('title_card', 'Listagem dos cursos cadastrados')
 
 @section('bc1')
-    <li class="breadcrumb-item active" aria-current="page">Cursos</li>
+    <li class="breadcrumb-item active" aria-current="page"><strong>Cursos</strong></li>
 @endsection
 
 @section('bc2')

@@ -4,6 +4,14 @@
 @section('title_card', 'Editar esta Aula')
 @section('footer_card', '...')
 
+{{-- Breadcrumb START --}}
+@section('bc1')
+<li class="breadcrumb-item">Cursos</li>
+<li class="breadcrumb-item">Aulas</li>
+<li class="breadcrumb-item active" aria-current="page"><strong>Editar a Aula Selecionada</strong></li>
+@endsection
+{{-- Breadcrumb END --}}
+
 @section('links')
     <a href="{{ route('classe.index', ['course' => $selectedClasse->course->id]) }}" class="btn btn-secondary"
         data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Cancelar as alterações"><i

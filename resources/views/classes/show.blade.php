@@ -4,6 +4,14 @@
 @section('title_card', 'Detalhes da aula selecionada')
 @section('footer_card', '...')
 
+{{-- Breadcrumb START --}}
+@section('bc1')
+<li class="breadcrumb-item">Cursos</li>
+<li class="breadcrumb-item">Aulas</li>
+<li class="breadcrumb-item active" aria-current="page"><strong>Detalhes da Aula Selecionada</strong></li>
+@endsection
+{{-- Breadcrumb END --}}
+
 @section('links')
 
     @php

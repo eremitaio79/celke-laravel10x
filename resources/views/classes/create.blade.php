@@ -7,13 +7,19 @@
     @php
         $nomeCursoSelecionado = $selectedCourse->name;
     @endphp
-
     Cadastrar Nova Aula no Curso: <strong>{{ $nomeCursoSelecionado }}</strong>
-
 @endsection
 
 
 @section('footer_card', '...')
+
+{{-- Breadcrumb START --}}
+@section('bc1')
+<li class="breadcrumb-item">Cursos</li>
+<li class="breadcrumb-item">Aulas</li>
+<li class="breadcrumb-item active" aria-current="page"><strong>Cadastrar Nova Aula Neste Curso</strong></li>
+@endsection
+{{-- Breadcrumb END --}}
 
 @section('links')
     <a href="{{ route('classe.index', ['course' => $selectedCourse->id]) }}" class="btn btn-secondary" data-bs-toggle="tooltip"
