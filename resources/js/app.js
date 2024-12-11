@@ -6,3 +6,5 @@ import Swal from 'sweetalert2';
 window.Swal = Swal;
 
 // import './sweetalert2_11.14.5/sweetalert2@11';
+
+import '@fortawesome/fontawesome-free';
