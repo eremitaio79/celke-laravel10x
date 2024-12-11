@@ -7,6 +7,8 @@
 
     <title>@yield('title')</title>
 
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
     {{-- Bootstrap is now included by Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
