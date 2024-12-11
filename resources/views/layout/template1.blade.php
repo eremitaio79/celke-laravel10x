@@ -11,8 +11,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- <link href="{{ asset('css/bootstrap533/bootstrap.min.css') }}" rel="stylesheet"> --}}
-    <link href="{{ asset('css/fontawesome671/all.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sweetalert2_11.14.5/sweetalert2.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/fontawesome671/all.css') }}" rel="stylesheet"> --}}
+    {{-- <link href="{{ asset('css/sweetalert2_11.14.5/sweetalert2.min.css') }}" rel="stylesheet"> --}}
 </head>
 
 <body>
@@ -119,8 +119,8 @@
 
     {{-- <script src="{{ asset('js/bootstrap533/bootstrap.bundle.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/bootstrap533/tooltips.js') }}"></script> --}}
-    <script src="{{ asset('js/fontawesome671/all.js') }}"></script>
-    <script src="{{ asset('js/sweetalert2_11.14.5/sweetalert2@11.js') }}"></script>
+    {{-- <script src="{{ asset('js/fontawesome671/all.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/sweetalert2_11.14.5/sweetalert2@11.js') }}"></script> --}}
 
 </body>
 
