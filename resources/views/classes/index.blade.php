@@ -3,6 +3,13 @@
 @section('title', 'AULAS DO CURSO')
 @section('title_card', 'Aulas do curso selecionado')
 
+{{-- Breadcrumb START --}}
+@section('bc1')
+<li class="breadcrumb-item">Cursos</li>
+<li class="breadcrumb-item active" aria-current="page"><strong>Aulas</strong></li>
+@endsection
+{{-- Breadcrumb END --}}
+
 @section('footer_card')
     Total de aulas: <strong>{{ $totalClasses }} aulas</strong> neste curso.
 @endsection

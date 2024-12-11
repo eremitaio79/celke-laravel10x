@@ -4,6 +4,13 @@
 @section('title_card', 'Listagem dos cursos cadastrados')
 @section('footer_card', '...')
 
+{{-- Breadcrumb START --}}
+@section('bc1')
+<li class="breadcrumb-item">Cursos</li>
+<li class="breadcrumb-item active" aria-current="page"><strong>Editar Curso Selecionado</strong></li>
+@endsection
+{{-- Breadcrumb END --}}
+
 @section('links')
     <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary">Cancelar</a>
 @endsection

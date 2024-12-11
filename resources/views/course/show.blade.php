@@ -4,6 +4,13 @@
 @section('title_card', 'Detalhes do curso selecionado')
 @section('footer_card', '...')
 
+{{-- Breadcrumb START --}}
+@section('bc1')
+<li class="breadcrumb-item">Cursos</li>
+<li class="breadcrumb-item active" aria-current="page"><strong>Detalhes do Curso Selecionado</strong></li>
+@endsection
+{{-- Breadcrumb END --}}
+
 @section('links')
     <form id="deleteForm" action="{{ route('course.destroy', ['id' => $selectedCourse->id]) }}" method="POST"
         enctype="multipart/form-data">
