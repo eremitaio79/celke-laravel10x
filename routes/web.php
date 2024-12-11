@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,3 +49,10 @@ Route::put('/update-classe/{id}', [ClasseController::class, 'update'])->name('cl
 Route::delete('/destroy-classe/{classe}', [ClasseController::class, 'destroy'])->name('classe.destroy'); // Delete classe method.
 
 // Users.
+Route::get('/index-user', [UserController::class, 'index'])->name('user.index');
+Route::get('/show-user/{id}', [UserController::class, 'show'])->name('user.show');
+Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
+Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
+Route::get('/edit-user/{id}', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/update-user/{id}', [UserController::class, 'update'])->name('user.update');
+Route::delete('/destroy-user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
