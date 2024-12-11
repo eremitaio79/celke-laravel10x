@@ -100,7 +100,7 @@
                                 <th scope="col" class="text-truncate" style="max-width: 150px;">Nome</th>
                                 <th scope="col" class="d-none d-lg-table-cell text-truncate" style="max-width: 250px;">
                                     Descritivo</th>
-                                <th scope="col" class="text-truncate" width="120">Preço</th>
+                                <th scope="col" class="d-none d-md-table-cell text-truncate" width="120">Preço</th>
                                 <th scope="col" width="100">Status</th>
                                 <th scope="col" class="d-none d-md-table-cell" width="220">Criação</th>
                                 <th scope="col" width="150">Ações</th>
@@ -117,7 +117,7 @@
                                     @php
                                         $formatter = new NumberFormatter('pt_BR', NumberFormatter::CURRENCY);
                                     @endphp
-                                    <td>{{ $formatter->formatCurrency($course->price, 'BRL') }}</td>
+                                    <td class="d-none d-md-table-cell">{{ $formatter->formatCurrency($course->price, 'BRL') }}</td>
                                     {{-- <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td> --}}
                                     <td>
                                         @if ($course->status == 1)

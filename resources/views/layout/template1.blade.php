@@ -53,7 +53,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i
+                                    <li><a class="dropdown-item" href="{{ route('user.index') }}" target="_self"><i
                                                 class="fa-solid fa-user"></i>&nbsp;&nbsp;Usuários...</a></li>
                                 </ul>
                             </li>
@@ -80,7 +80,10 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}" target="_self">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}" target="_self"
+                                class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover text-decoration-none"><i
+                                    class="fa-solid fa-house"></i></a>
+                        </li>
                         @yield('bc1')
                         @yield('bc2')
                     </ol>
