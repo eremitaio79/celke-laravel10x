@@ -27,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        dd('User create');
+        // dd('User create');
+        return view('users.create');
     }
 
     /**

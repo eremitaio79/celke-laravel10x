@@ -6,9 +6,9 @@
 
 {{-- Breadcrumb START --}}
 @section('bc1')
-<li class="breadcrumb-item">Cursos</li>
-<li class="breadcrumb-item">Aulas</li>
-<li class="breadcrumb-item active" aria-current="page"><strong>Detalhes da Aula Selecionada</strong></li>
+    <li class="breadcrumb-item">Cursos</li>
+    <li class="breadcrumb-item">Aulas</li>
+    <li class="breadcrumb-item active" aria-current="page"><strong>Detalhes da Aula Selecionada</strong></li>
 @endsection
 {{-- Breadcrumb END --}}
 
@@ -19,7 +19,8 @@
         $tooltipText = 'Voltar para a lista de aulas do curso: ' . $selectedClasse->course->name;
     @endphp
 
-    <form id="deleteForm" action="{{ route('classe.destroy', ['classe' => $selectedClasse->id]) }}" method="post" target="_self" enctype="multipart/form-data">
+    <form id="deleteForm-{{ $selectedClasse->id }}" action="{{ route('classe.destroy', ['classe' => $selectedClasse->id]) }}"
+        method="post" target="_self" enctype="multipart/form-data">
         @csrf
         @method('DELETE')
 
@@ -33,9 +34,10 @@
                 class="fa-solid fa-pen-to-square"></i>
         </a>
 
-        <button type="button" onclick="showCustomConfirm(event)" data-bs-toggle="tooltip" data-bs-placement="bottom"
-            data-bs-title="Excluir esta aula" class="btn btn-danger"><i class="fa-solid fa-trash"></i>
-        </button>
+        <button type="button" class="delete-classe-button btn btn-danger"
+            data-form-id="deleteForm-{{ $selectedClasse->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-title="Excluir esta aula">
+            <i class="fa-solid fa-trash"></i>
     </form>
 @endsection
 
@@ -147,7 +149,7 @@
             </tbody>
         </table>
 
-        <script>
+        {{-- <script>
             function showCustomConfirm(event) {
                 // Prevents form submission.
                 event.preventDefault();
@@ -168,6 +170,6 @@
                     }
                 });
             }
-        </script>
+        </script> --}}
 
     @endsection

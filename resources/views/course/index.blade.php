@@ -149,7 +149,7 @@
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
 
-                                                <button type="button" class="delete-button btn btn-sm btn-danger"
+                                                <button type="button" class="delete-course-button btn btn-sm btn-danger"
                                                     data-form-id="deleteForm-{{ $course->id }}" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Excluir esta aula">
                                                     &nbsp;<i class="fa-solid fa-trash"></i>&nbsp;

@@ -2,12 +2,13 @@
 
 @section('title', 'CURSOS')
 @section('title_card', 'Listagem dos cursos cadastrados')
-@section('footer_card', '...')
+@section('footer_card', 'Verifique as informações do curso e altere o que for necessário. Após editar, salve as
+    alterações.')
 
-{{-- Breadcrumb START --}}
+    {{-- Breadcrumb START --}}
 @section('bc1')
-<li class="breadcrumb-item">Cursos</li>
-<li class="breadcrumb-item active" aria-current="page"><strong>Editar Curso Selecionado</strong></li>
+    <li class="breadcrumb-item">Cursos</li>
+    <li class="breadcrumb-item active" aria-current="page"><strong>Editar Curso Selecionado</strong></li>
 @endsection
 {{-- Breadcrumb END --}}
 

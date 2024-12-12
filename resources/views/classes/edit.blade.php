@@ -2,7 +2,7 @@
 
 @section('title', 'CURSOS')
 @section('title_card', 'Editar esta Aula')
-@section('footer_card', '...')
+@section('footer_card', 'Faça as alterações necessárias nesta aula e a seguir salve.')
 
 {{-- Breadcrumb START --}}
 @section('bc1')

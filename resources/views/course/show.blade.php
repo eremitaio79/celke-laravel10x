@@ -2,18 +2,18 @@
 
 @section('title', 'CURSOS')
 @section('title_card', 'Detalhes do curso selecionado')
-@section('footer_card', '...')
+@section('footer_card', 'Informações detalhadas sobre o curso selecionado.')
 
 {{-- Breadcrumb START --}}
 @section('bc1')
-<li class="breadcrumb-item">Cursos</li>
-<li class="breadcrumb-item active" aria-current="page"><strong>Detalhes do Curso Selecionado</strong></li>
+    <li class="breadcrumb-item">Cursos</li>
+    <li class="breadcrumb-item active" aria-current="page"><strong>Detalhes do Curso Selecionado</strong></li>
 @endsection
 {{-- Breadcrumb END --}}
 
 @section('links')
-    <form id="deleteForm" action="{{ route('course.destroy', ['id' => $selectedCourse->id]) }}" method="POST"
-        enctype="multipart/form-data">
+    <form id="deleteCourseForm-{{ $selectedCourse->id }}" action="{{ route('course.destroy', ['id' => $selectedCourse->id]) }}"
+        method="POST" enctype="multipart/form-data">
         @csrf
         @method('DELETE')
 
@@ -22,8 +22,12 @@
         <a href="{{ route('course.edit', ['id' => $selectedCourse->id]) }}" target="_self" data-bs-toggle="tooltip"
             data-bs-placement="bottom" data-bs-title="Editar este curso" class="btn btn-success"><i
                 class="fa-solid fa-pen-to-square"></i></a>
-        <button type="button" onclick="showCustomConfirm(event)" data-bs-toggle="tooltip" data-bs-placement="bottom"
-            data-bs-title="Excluir este curso" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+        <button type="button" class="delete-course-button btn btn-danger" data-form-id="deleteCourseForm-{{ $selectedCourse->id }}"
+            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir esta aula">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+        {{-- <button type="button" onclick="showCustomConfirm(event)" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-title="Excluir este curso" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button> --}}
     </form>
 @endsection
 
@@ -121,7 +125,7 @@
         </tbody>
     </table>
 
-    <script>
+    {{-- <script>
         function showCustomConfirm(event) {
             // Impede o envio do formulário
             event.preventDefault();
@@ -142,6 +146,6 @@
                 }
             });
         }
-    </script>
+    </script> --}}
 
 @endsection

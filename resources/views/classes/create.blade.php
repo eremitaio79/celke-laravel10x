@@ -11,7 +11,7 @@
 @endsection
 
 
-@section('footer_card', '...')
+@section('footer_card', 'Preencha as informações da nova aula.')
 
 {{-- Breadcrumb START --}}
 @section('bc1')

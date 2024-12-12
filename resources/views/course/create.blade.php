@@ -2,7 +2,7 @@
 
 @section('title', 'CURSOS')
 @section('title_card', 'Cadastrar novo curso')
-@section('footer_card', '...')
+@section('footer_card', 'Preencha as informações do novo curso.')
 
 {{-- Breadcrumb START --}}
 @section('bc1')
