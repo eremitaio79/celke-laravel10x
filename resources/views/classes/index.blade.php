@@ -5,8 +5,8 @@
 
 {{-- Breadcrumb START --}}
 @section('bc1')
-<li class="breadcrumb-item">Cursos</li>
-<li class="breadcrumb-item active" aria-current="page"><strong>Aulas</strong></li>
+    <li class="breadcrumb-item">Cursos</li>
+    <li class="breadcrumb-item active" aria-current="page"><strong>Aulas</strong></li>
 @endsection
 {{-- Breadcrumb END --}}
 
@@ -17,8 +17,8 @@
 @section('links')
     <a href="{{ route('course.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Voltar aos cursos"
         target="_self" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i></a>
-    <a href="{{ route('classe.create', ['course' => $selectedCourse->id]) }}" class="btn btn-primary" data-bs-toggle="tooltip"
-        data-bs-placement="bottom" data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
+    <a href="{{ route('classe.create', ['course' => $selectedCourse->id]) }}" class="btn btn-primary"
+        data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Cadastrar nova aula neste curso">Nova Aula</a>
 @endsection
 
 
@@ -123,11 +123,13 @@
                             class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Detalhes desta aula">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
 
-                        <button type="button" onclick="showCustomConfirm(event, 'deleteForm-{{ $classe->id }}')"
-                            class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                        <button type="button" class="delete-button btn btn-sm btn-danger"
+                            data-form-id="deleteForm-{{ $classe->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Excluir esta aula">
                             &nbsp;<i class="fa-solid fa-trash"></i>&nbsp;
                         </button>
+
+
                     </div>
 
 
@@ -142,7 +144,7 @@
         </div>
     @endforelse
 
-    <script>
+    {{-- <script>
         function showCustomConfirm(event, formId) {
             // Impede o envio do formulário
             event.preventDefault();
@@ -163,6 +165,6 @@
                 }
             });
         }
-    </script>
+    </script> --}}
 
 @endsection
