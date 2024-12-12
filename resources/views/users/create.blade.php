@@ -53,7 +53,7 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-9 text-start">
+            <div class="col-6 text-start">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}"
                     placeholder="Informe o e-mail do usuário" required />
@@ -63,6 +63,14 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" class="form-control" value="{{ old('password') }}"
                     placeholder="Informe a senha do usuário" required />
+            </div>
+
+            <div class="col-3 text-start">
+                <label for="password_confirmation">Confirme a Senha</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                @error('password')
+                    <small class="text-danger">{!! $message !!}</small>
+                @enderror
             </div>
         </div>
 

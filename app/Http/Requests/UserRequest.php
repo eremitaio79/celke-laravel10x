@@ -11,7 +11,8 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+        // return auth()->check(); // Apenas usuários autenticados podem enviar este request.
     }
 
     /**
@@ -22,22 +23,23 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
+            'password' => 'required|string|min:8|confirmed', // Adiciona validação de confirmação
         ];
     }
 
     // Translate messages to pt-br.
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required' => 'O campo <strong>Nome do Usuário</strong> é obrigatório.',
             'email.required' => 'O campo <strong>E-mail do Usuário</strong> é obrigatório.',
+            'email.email' => 'O campo <strong>E-mail</strong> deve conter um endereço válido.',
+            'email.unique' => 'O e-mail informado já está em uso.',
             'password.required' => 'O campo <strong>Senha do Usuário</strong> é obrigatório.',
-            // 'course_id.required' => 'O campo <strong>Preço</strong> é obrigatório.',
-            // 'email.email' => 'O Email deve estar em um formato válido.',
-            // 'password.min' => 'A senha deve ter no mínimo :min caracteres.',
+            'password.min' => 'A <strong>Senha</strong> deve ter no mínimo :min caracteres.',
+            'password.confirmed' => 'A confirmação da <strong>Senha</strong> não corresponde.',
         ];
     }
 }
