@@ -123,7 +123,7 @@
                             class="btn btn-sm btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Detalhes desta aula">&nbsp;<i class="fa-solid fa-eye"></i>&nbsp;</a>
 
-                        <button type="button" class="delete-button btn btn-sm btn-danger"
+                        <button type="button" class="delete-classe-button btn btn-sm btn-danger"
                             data-form-id="deleteForm-{{ $classe->id }}" data-bs-toggle="tooltip" data-bs-placement="top"
                             data-bs-title="Excluir esta aula">
                             &nbsp;<i class="fa-solid fa-trash"></i>&nbsp;
