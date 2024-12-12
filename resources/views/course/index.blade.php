@@ -117,7 +117,8 @@
                                     @php
                                         $formatter = new NumberFormatter('pt_BR', NumberFormatter::CURRENCY);
                                     @endphp
-                                    <td class="d-none d-md-table-cell">{{ $formatter->formatCurrency($course->price, 'BRL') }}</td>
+                                    <td class="d-none d-md-table-cell">
+                                        {{ $formatter->formatCurrency($course->price, 'BRL') }}</td>
                                     {{-- <td>{{ $course->status ? 'Ativo' : 'Inativo' }}</td> --}}
                                     <td>
                                         @if ($course->status == 1)
@@ -130,7 +131,7 @@
                                         {{ \Carbon\Carbon::parse($course->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}
                                     </td>
                                     <td>
-                                        <form id="deleteForm" action="{{ route('course.destroy', ['id' => $course->id]) }}"
+                                        <form id="deleteForm-{{ $course->id }}" action="{{ route('course.destroy', ['id' => $course->id]) }}"
                                             method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('DELETE')
@@ -148,11 +149,10 @@
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
 
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    data-bs-title="Excluir curso" {{-- onclick="return confirm('Tem certeza que deseja excluir este registro?')" --}}
-                                                    onclick="showCustomConfirm(event)">
-                                                    <i class="fa-solid fa-trash"></i>
+                                                <button type="button" class="delete-button btn btn-sm btn-danger"
+                                                    data-form-id="deleteForm-{{ $course->id }}" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Excluir esta aula">
+                                                    &nbsp;<i class="fa-solid fa-trash"></i>&nbsp;
                                                 </button>
 
                                                 <a type="button" class="btn btn-secondary btn-sm position-relative"
@@ -191,7 +191,7 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         function showCustomConfirm(event) {
             // Impede o envio do formulário
             event.preventDefault();
@@ -212,6 +212,6 @@
                 }
             });
         }
-    </script>
+    </script> --}}
 
 @endsection

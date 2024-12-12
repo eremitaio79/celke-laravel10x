@@ -13,7 +13,7 @@ return new class extends Migration
     {
         // Include a new column price.
         Schema::table('courses', function (Blueprint $table) {
-            $table->float('price')->after('description')->default(0);
+            $table->float('price, 15, 2')->after('description')->default(0);
         });
     }
 
