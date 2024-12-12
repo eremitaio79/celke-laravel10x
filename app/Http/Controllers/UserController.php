@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,8 +12,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        // dd('User index');
-        return view('users.index');
+        // Pega a lista de usuários paginada, ordenada por nome.
+        $userList = User::orderBy('name', 'asc')->paginate(10);
+        $totalUsers = $userList->total(); // Contagem total de usuários.
+
+        return view('users.index', [
+            'userList' => $userList,
+            'totalUsers' => $totalUsers
+        ]);
     }
 
     /**
