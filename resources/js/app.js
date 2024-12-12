@@ -12,3 +12,4 @@ import '@fortawesome/fontawesome-free';
 // JS Alerts.
 import './alert-classe-index';
 import './alert-course-index';
+import './alert-user-index';
