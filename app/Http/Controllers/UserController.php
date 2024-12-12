@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -38,8 +40,20 @@ class UserController extends Controller
     public function store(Request $request, UserRequest $userRequest)
     {
         // dd('User store');
-        dd($request);
+        // dd($request);
         $userRequest->validated();
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), // Criptografando a senha
+        ]);
+
+        Log::info('PE79: Novo usuário cadastrado', [
+            $userRequest
+        ]);
+
+        return redirect()->route('user.index')->with('msgSuccess', 'O novo usuário foi cadastrado com sucesso!');
     }
 
     /**
@@ -53,17 +67,40 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id, User $user)
     {
-        dd('User edit');
+        $userEdit = User::findorFail($id);
+        // dd($userEdit);
+
+        if (!$userEdit) {
+            return redirect()->route('user.index')->with('msgError', 'Usuário não localizado.');
+        }
+
+        return view('users.edit', compact('userEdit'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, UserRequest $userRequest)
     {
-        dd('User update');
+        // dd($id);
+        $userRequest->validated();
+
+        $user = User::findOrFail($id);
+
+        if (!$user) {
+            return redirect()->route('user.index')->with('msgError', 'Usuário não encontrado.');
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('user.show', $id)->with('msgSuccess', 'O usuário foi atualizado com sucesso!');
     }
 
     /**
