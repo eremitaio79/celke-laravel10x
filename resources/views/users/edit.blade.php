@@ -7,7 +7,8 @@
 
 {{-- Breadcrumb START --}}
 @section('bc1')
-    <li class="breadcrumb-item active" aria-current="page"><strong>Usuários</strong></li>
+    <li class="breadcrumb-item">Usuários</li>
+    <li class="breadcrumb-item active" aria-current="page"><strong>Editar Usuário Selecionado</strong></li>
 @endsection
 {{-- Breadcrumb END --}}
 
