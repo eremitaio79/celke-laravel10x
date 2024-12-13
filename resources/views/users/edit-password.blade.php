@@ -7,7 +7,8 @@
 
 {{-- Breadcrumb START --}}
 @section('bc1')
-    <li class="breadcrumb-item active" aria-current="page"><strong>Usuários</strong></li>
+    <li class="breadcrumb-item">Usuários</li>
+    <li class="breadcrumb-item active" aria-current="page"><strong>Editar Senha do Usuário</strong></li>
 @endsection
 {{-- Breadcrumb END --}}
 
@@ -40,7 +41,8 @@
         }, 5000); // 5 segundos
     </script>
 
-    <form action="{{ route('user.password-update', ['id' => $userEdit->id]) }}" method="POST" enctype="multipart/form-data" target="_self">
+    <form action="{{ route('user.password-update', ['id' => $userEdit->id]) }}" method="POST" enctype="multipart/form-data"
+        target="_self">
         @csrf
         @method('PUT')
 
@@ -49,7 +51,8 @@
         <div class="row mb-3">
             <div class="col-12 text-start">
                 <h5><label for="name">Usuário: </label>
-                <strong>{{ $userEdit->name }}</strong></h5>
+                    <strong>{{ $userEdit->name }}</strong>
+                </h5>
                 <hr />
             </div>
         </div>
@@ -57,8 +60,8 @@
         <div class="row mb-3">
             <div class="col-3 text-start">
                 <label for="password">Nova Senha</label>
-                <input type="password" id="password" name="password" class="form-control" value="{{ old('password', $userEdit->password) }}"
-                    placeholder="Informe a senha do usuário" required />
+                <input type="password" id="password" name="password" class="form-control"
+                    value="{{ old('password', $userEdit->password) }}" placeholder="Informe a senha do usuário" required />
             </div>
 
             <div class="col-3 text-start">
