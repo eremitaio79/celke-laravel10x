@@ -21,7 +21,10 @@
 
 
 @section('links')
-    <a href="{{ route('user.create') }}" target="_self" class="btn btn-primary">Novo Usuário</a>
+    <a href="{{ route('course.index') }}" target="_self" class="btn btn-secondary" data-bs-toggle="tooltip"
+    data-bs-placement="bottom" data-bs-title="Voltar aos cursos">Cursos</a>
+    <a href="{{ route('user.create') }}" target="_self" class="btn btn-primary" data-bs-toggle="tooltip"
+    data-bs-placement="bottom" data-bs-title="Cadastrar novo usuário">Novo Usuário</a>
 @endsection
 
 
