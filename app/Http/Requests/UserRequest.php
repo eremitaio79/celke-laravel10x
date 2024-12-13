@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email|max:255',
-            'password' => 'required|string|min:8|confirmed', // Adiciona validação de confirmação
+            // 'password' => 'required|string|min:8|confirmed', // Adiciona validação de confirmação
         ];
     }
 
@@ -37,9 +37,9 @@ class UserRequest extends FormRequest
             'email.required' => 'O campo <strong>E-mail do Usuário</strong> é obrigatório.',
             'email.email' => 'O campo <strong>E-mail</strong> deve conter um endereço válido.',
             'email.unique' => 'O e-mail informado já está em uso.',
-            'password.required' => 'O campo <strong>Senha do Usuário</strong> é obrigatório.',
-            'password.min' => 'A <strong>Senha</strong> deve ter no mínimo :min caracteres.',
-            'password.confirmed' => 'A confirmação da <strong>Senha</strong> não corresponde.',
+            // 'password.required' => 'O campo <strong>Senha do Usuário</strong> é obrigatório.',
+            // 'password.min' => 'A <strong>Senha</strong> deve ter no mínimo :min caracteres.',
+            // 'password.confirmed' => 'A confirmação da <strong>Senha</strong> não corresponde.',
         ];
     }
 }

@@ -126,13 +126,20 @@
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
 
+                                                <a type="button" class="btn btn-info btn-sm" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Editar senha do usuário"
+                                                    href="{{ route('user.password-edit', ['id' => $user->id]) }}">
+                                                    <i class="fa-solid fa-key"></i>
+                                                </a>
+
                                                 <a type="button" class="btn btn-warning btn-sm" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Detalhes do usuário"
                                                     href="{{ route('user.show', ['id' => $user->id]) }}">
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
 
-                                                <button type="button" class="delete-button btn btn-sm btn-danger"
+
+                                                <button type="button" class="delete-user-button btn btn-sm btn-danger"
                                                     data-form-id="deleteForm-{{ $user->id }}" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Excluir este usuário">
                                                     &nbsp;<i class="fa-solid fa-trash"></i>&nbsp;

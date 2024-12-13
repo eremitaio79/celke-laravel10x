@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserPasswordRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -61,7 +62,14 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        dd('User show');
+        // dd($id);
+        $selectedUser = User::findOrFail($id);
+
+        if (!$selectedUser) {
+            return redirect()->route('user.index')->with('msgError', 'Usuário não encontrado.');
+        }
+
+        return view('users.show', compact('selectedUser'));
     }
 
     /**
@@ -77,7 +85,6 @@ class UserController extends Controller
         }
 
         return view('users.edit', compact('userEdit'));
-
     }
 
     /**
@@ -97,7 +104,7 @@ class UserController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            // 'password' => Hash::make($request->password)
         ]);
 
         return redirect()->route('user.show', $id)->with('msgSuccess', 'O usuário foi atualizado com sucesso!');
@@ -109,5 +116,38 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         dd('User destroy');
+    }
+
+    public function passwordEdit(string $id)
+    {
+        // dd('user passwordUpdate');
+        // dd($id);
+        $userEdit = User::findorFail($id);
+        // dd($userEdit);
+
+        if (!$userEdit) {
+            return redirect()->route('user.index')->with('msgError', 'Usuário não localizado.');
+        }
+
+        return view('users.edit-password', compact('userEdit'));
+    }
+
+    public function passwordUpdate(Request $request, string $id, UserPasswordRequest $userPasswordRequest)
+    {
+        $userPasswordRequest->validated();
+
+        $user = User::findOrFail($id);
+
+        if (!$user) {
+            return redirect()->route('user.index')->with('msgError', 'A senha do usuário não foi alterada.');
+        }
+
+        $user->update([
+            // 'name' => $request->name,
+            // 'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('user.show', $id)->with('msgSuccess', 'A senha do usuário foi alterada com sucesso!');
     }
 }
