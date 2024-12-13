@@ -2,8 +2,8 @@
 
 
 @section('title', 'USUÁRIOS')
-@section('title_card', 'Edição do Usuário Selecionado')
-@section('footer_card', 'Faça as alterações necessárias no usuário selecionado e a seguir, salve.')
+@section('title_card', 'Edição da Senha do Usuário Selecionado')
+@section('footer_card', 'Faça a alteração da senha do usuário selecionado e a seguir, salve.')
 
 {{-- Breadcrumb START --}}
 @section('bc1')
@@ -40,40 +40,34 @@
         }, 5000); // 5 segundos
     </script>
 
-    <form action="{{ route('user.update', ['id' => $userEdit->id]) }}" method="POST" enctype="multipart/form-data" target="_self">
+    <form action="{{ route('user.password-update', ['id' => $userEdit->id]) }}" method="POST" enctype="multipart/form-data" target="_self">
         @csrf
         @method('PUT')
 
-        {{-- <input type="hidden" id="id" name="id" value="{{ old('id', $userEdit->id) }}" /> --}}
+        <input type="hidden" id="id" name="id" value="{{ old('id', $userEdit->id) }}" />
 
         <div class="row mb-3">
             <div class="col-12 text-start">
-                <label for="name">Nome do Usuário</label>
-                <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $userEdit->name) }}"
-                    placeholder="Informe o nome do usuário" required />
+                <h5><label for="name">Usuário: </label>
+                <strong>{{ $userEdit->name }}</strong></h5>
+                <hr />
             </div>
         </div>
 
         <div class="row mb-3">
-            <div class="col-6 text-start">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" class="form-control" value="{{ old('email', $userEdit->email) }}"
-                    placeholder="Informe o e-mail do usuário" required />
-            </div>
-
-            {{-- <div class="col-3 text-start">
-                <label for="password">Senha</label>
+            <div class="col-3 text-start">
+                <label for="password">Nova Senha</label>
                 <input type="password" id="password" name="password" class="form-control" value="{{ old('password', $userEdit->password) }}"
                     placeholder="Informe a senha do usuário" required />
             </div>
 
             <div class="col-3 text-start">
-                <label for="password_confirmation">Confirme a Senha</label>
+                <label for="password_confirmation">Confirme a Nova Senha</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                 @error('password')
                     <small class="text-danger">{!! $message !!}</small>
                 @enderror
-            </div> --}}
+            </div>
         </div>
 
         <div class="row mb-3">
