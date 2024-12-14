@@ -30,13 +30,13 @@ Route::get('/', function () {
 /* My routes */
 
 // Courses.
-Route::get('/index-course', [CourseController::class, 'index'])->name('course.index'); // Index method.
-Route::get('/show-course/{id}', [CourseController::class, 'show'])->name('course.show'); // Show method.
-Route::get('/create-course', [CourseController::class, 'create'])->name('course.create'); // Create method.
-Route::post('/store-course', [CourseController::class, 'store'])->name('course.store'); // Store method.
-Route::get('/edit-course/{id}', [CourseController::class, 'edit'])->name('course.edit'); // Edit method.
-Route::put('/update-course/{id}', [CourseController::class, 'update'])->name('course.update'); // Put method.
-Route::delete('/destroy-course/{id}', [CourseController::class, 'destroy'])->name('course.destroy'); // Delete method.
+Route::get('/index-course', [CourseController::class, 'index'])->name('course.index'); // Index course method.
+Route::get('/show-course/{id}', [CourseController::class, 'show'])->name('course.show'); // Show course method.
+Route::get('/create-course', [CourseController::class, 'create'])->name('course.create'); // Create course method.
+Route::post('/store-course', [CourseController::class, 'store'])->name('course.store'); // Store course method.
+Route::get('/edit-course/{id}', [CourseController::class, 'edit'])->name('course.edit'); // Edit course method.
+Route::put('/update-course/{id}', [CourseController::class, 'update'])->name('course.update'); // Put course method.
+Route::delete('/destroy-course/{id}', [CourseController::class, 'destroy'])->name('course.destroy'); // Delete course method.
 
 // Classes.
 Route::get('/index-allclasse', [ClasseController::class, 'allClasses'])->name('allclasse.index'); // Index all classes method.
@@ -49,12 +49,12 @@ Route::put('/update-classe/{id}', [ClasseController::class, 'update'])->name('cl
 Route::delete('/destroy-classe/{classe}', [ClasseController::class, 'destroy'])->name('classe.destroy'); // Delete classe method.
 
 // Users.
-Route::get('/index-user', [UserController::class, 'index'])->name('user.index');
-Route::get('/show-user/{id}', [UserController::class, 'show'])->name('user.show');
-Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
-Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
-Route::get('/edit-user/{id}', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/update-user/{id}', [UserController::class, 'update'])->name('user.update');
-Route::delete('/destroy-user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-Route::get('/edit-user-password/{id}', [UserController::class, 'passwordEdit'])->name('user.password-edit');
-Route::put('/update-user-password/{id}', [UserController::class, 'passwordUpdate'])->name('user.password-update');
+Route::get('/index-user', [UserController::class, 'index'])->name('user.index'); // Index user method.
+Route::get('/show-user/{id}', [UserController::class, 'show'])->name('user.show'); // Show user method.
+Route::get('/create-user', [UserController::class, 'create'])->name('user.create'); // Create user method.
+Route::post('/store-user', [UserController::class, 'store'])->name('user.store'); // Store user method.
+Route::get('/edit-user/{id}', [UserController::class, 'edit'])->name('user.edit'); // Edit user method.
+Route::put('/update-user/{id}', [UserController::class, 'update'])->name('user.update'); // Update user method.
+Route::delete('/destroy-user/{id}', [UserController::class, 'destroy'])->name('user.destroy'); // Destroy user method.
+Route::get('/edit-user-password/{id}', [UserController::class, 'passwordEdit'])->name('user.password-edit'); // Edit password user method.
+Route::put('/update-user-password/{id}', [UserController::class, 'passwordUpdate'])->name('user.password-update'); // Update password user method.
