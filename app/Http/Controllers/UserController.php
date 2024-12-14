@@ -115,6 +115,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+        // I need to implement this method to delete the selected user.
         dd('User destroy');
     }
 
