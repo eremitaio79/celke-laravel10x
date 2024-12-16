@@ -33,12 +33,21 @@ class ClasseController extends Controller
     /**
      * Load all classes independet of the course.
      */
-    public function allClasses()
+    public function allClasses(Course $course)
     {
-        $allClasses = Classe::orderBy('id', 'desc')->get();
-        dd($allClasses);
+        // Conta o número de aulas para o curso específico
+        $totalClasses = Classe::where('course_id', $course->id)->count();
 
-        // return route('classe.index');
+        $classes = Classe::with('course')
+            // ->where('course_id', $course->id)
+            ->orderBy('order_classe', 'asc')
+            ->get();
+        // dd($allClasses);
+
+        return view('classes/allclasse', [
+            'totalClasses' => $totalClasses,
+            'classes' => $classes
+        ]);
     }
 
     /**
