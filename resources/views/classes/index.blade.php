@@ -128,21 +128,22 @@
                             data-bs-title="Excluir esta aula">
                             &nbsp;<i class="fa-solid fa-trash"></i>&nbsp;
                         </button>
-
-
                     </div>
-
-
                 </form>
             </div>
         </div>
-
     @empty
 
         <div class="alert alert-warning" role="alert">
             Nenhuma aula disponível neste curso.
         </div>
     @endforelse
+
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            {{ $classes->links() }}
+        </div>
+    </div>
 
     {{-- <script>
         function showCustomConfirm(event, formId) {

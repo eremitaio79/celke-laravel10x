@@ -11,7 +11,7 @@
 {{-- Breadcrumb END --}}
 
 @section('footer_card')
-    Total de aulas: <strong>{{ $totalClasses }} aulas</strong> neste curso.
+    Total de aulas: <strong>{{ $totalClasses }} aulas</strong>.
 @endsection
 
 @section('links')
@@ -136,13 +136,18 @@
                 </div>
             </div>
         </div>
-
     @empty
 
         <div class="alert alert-warning" role="alert">
-            Nenhuma aula disponível neste curso.
+            Nenhuma aula disponível.
         </div>
     @endforelse
+
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            {{ $classes->links() }}
+        </div>
+    </div>
 
     {{-- <script>
         function showCustomConfirm(event, formId) {
