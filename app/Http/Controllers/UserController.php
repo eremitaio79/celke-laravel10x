@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserPasswordRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+// use Carbon\Exceptions\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Exception; // Importar explicitamente (não obrigatório, mas pode ajudar o editor)
+
+use PDOException;
 
 class UserController extends Controller
 {
@@ -54,7 +58,9 @@ class UserController extends Controller
             $userRequest
         ]);
 
-        return redirect()->route('user.index')->with('msgSuccess', 'O novo usuário foi cadastrado com sucesso!');
+        return redirect()
+            ->route('user.index')
+            ->with('msgSuccess', 'O novo usuário foi cadastrado com sucesso!');
     }
 
     /**
@@ -66,7 +72,9 @@ class UserController extends Controller
         $selectedUser = User::findOrFail($id);
 
         if (!$selectedUser) {
-            return redirect()->route('user.index')->with('msgError', 'Usuário não encontrado.');
+            return redirect()
+                ->route('user.index')
+                ->with('msgError', 'Usuário não encontrado.');
         }
 
         return view('users.show', compact('selectedUser'));
@@ -81,7 +89,9 @@ class UserController extends Controller
         // dd($userEdit);
 
         if (!$userEdit) {
-            return redirect()->route('user.index')->with('msgError', 'Usuário não localizado.');
+            return redirect()
+                ->route('user.index')
+                ->with('msgError', 'Usuário não localizado.');
         }
 
         return view('users.edit', compact('userEdit'));
@@ -98,7 +108,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if (!$user) {
-            return redirect()->route('user.index')->with('msgError', 'Usuário não encontrado.');
+            return redirect()
+                ->route('user.index')
+                ->with('msgError', 'Usuário não encontrado.');
         }
 
         $user->update([
@@ -107,7 +119,9 @@ class UserController extends Controller
             // 'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('user.show', $id)->with('msgSuccess', 'O usuário foi atualizado com sucesso!');
+        return redirect()
+            ->route('user.show', $id)
+            ->with('msgSuccess', 'O usuário foi atualizado com sucesso!');
     }
 
     /**
@@ -115,8 +129,33 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
+<<<<<<< HEAD
+        // dd('User destroy');
+        // dd($id);
+        try {
+            // Busca o usuário ou lança uma exceção caso não exista
+            $user = User::findOrFail($id);
+
+            // Exclui o registro do usuário
+            $user->delete();
+
+            // Redireciona com mensagem de sucesso
+            return redirect()
+                ->route('user.index')
+                ->with('msgSuccess', 'O usuário foi excluído com sucesso!');
+        } catch (Exception $error) {
+            // Loga o erro para depuração (opcional)
+            Log::error('Erro ao excluir usuário: ' . $error->getMessage());
+
+            // Redireciona com mensagem de erro
+            return redirect()
+                ->route('user.index')
+                ->with('msgError', 'Ocorreu um erro ao tentar excluir o usuário. Por favor, tente novamente.');
+        }
+=======
         // I need to implement this method to delete the selected user.
         dd('User destroy');
+>>>>>>> 3286214f22f2ce14a2eb49511953a36d099b7c81
     }
 
     public function passwordEdit(string $id)
@@ -127,7 +166,9 @@ class UserController extends Controller
         // dd($userEdit);
 
         if (!$userEdit) {
-            return redirect()->route('user.index')->with('msgError', 'Usuário não localizado.');
+            return redirect()
+                ->route('user.index')
+                ->with('msgError', 'Usuário não localizado.');
         }
 
         return view('users.edit-password', compact('userEdit'));
@@ -140,7 +181,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if (!$user) {
-            return redirect()->route('user.index')->with('msgError', 'A senha do usuário não foi alterada.');
+            return redirect()
+                ->route('user.index')
+                ->with('msgError', 'A senha do usuário não foi alterada.');
         }
 
         $user->update([
@@ -149,6 +192,8 @@ class UserController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('user.show', $id)->with('msgSuccess', 'A senha do usuário foi alterada com sucesso!');
+        return redirect()
+            ->route('user.show', $id)
+            ->with('msgSuccess', 'A senha do usuário foi alterada com sucesso!');
     }
 }
