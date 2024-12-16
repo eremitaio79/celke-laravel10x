@@ -51,7 +51,7 @@ class UserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Criptografando a senha
+            'password' => Hash::make($request->password, ['rounds' => 10]), // Criptografando a senha com 10 saltos.
         ]);
 
         Log::info('PE79: Novo usuário cadastrado', [
