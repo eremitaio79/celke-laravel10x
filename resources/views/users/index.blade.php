@@ -145,7 +145,7 @@
                                                 <button type="button" class="delete-user-button btn btn-sm btn-danger"
                                                     data-form-id="deleteForm-{{ $user->id }}" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Excluir este usuário">
-                                                    &nbsp;<i class="fa-solid fa-trash"></i>&nbsp;
+                                                    <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
                                         </form>

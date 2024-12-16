@@ -128,9 +128,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-<<<<<<< HEAD
-        // dd('User destroy');
+    {        // dd('User destroy');
         // dd($id);
         try {
             // Busca o usuário ou lança uma exceção caso não exista
@@ -152,10 +150,6 @@ class UserController extends Controller
                 ->route('user.index')
                 ->with('msgError', 'Ocorreu um erro ao tentar excluir o usuário. Por favor, tente novamente.');
         }
-=======
-        // I need to implement this method to delete the selected user.
-        dd('User destroy');
->>>>>>> 3286214f22f2ce14a2eb49511953a36d099b7c81
     }
 
     public function passwordEdit(string $id)
