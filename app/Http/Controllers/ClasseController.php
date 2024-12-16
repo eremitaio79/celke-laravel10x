@@ -19,7 +19,11 @@ class ClasseController extends Controller
         // Conta o número de aulas para o curso específico
         $totalClasses = Classe::where('course_id', $course->id)->count();
 
-        $classes = Classe::with('course')->where('course_id', $course->id)->orderBy('order_classe', 'asc')->get();
+        $classes = Classe::with('course')
+            ->where('course_id', $course->id)
+            ->orderBy('order_classe', 'asc')
+            // ->get();
+            ->paginate(20);
         // $totalClasses = $classes->total();
         // dd($classes);
 
@@ -36,15 +40,15 @@ class ClasseController extends Controller
     public function allClasses(Course $course)
     {
         // Conta o número de aulas para o curso específico
-        $totalClasses = Classe::where('course_id', $course->id)->count();
+        $totalClasses = Classe::count();
 
         $classes = Classe::with('course')
             // ->where('course_id', $course->id)
-            ->orderBy('order_classe', 'asc')
-            ->get();
+            ->orderBy('order_classe', 'desc')
+            ->paginate(20);
         // dd($allClasses);
 
-        return view('classes/allclasse', [
+        return view('classes.allclasse', [
             'totalClasses' => $totalClasses,
             'classes' => $classes
         ]);
