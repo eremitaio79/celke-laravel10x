@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,10 +25,17 @@ use Illuminate\Support\Facades\Route;
 
 // Homepage project route.
 Route::get('/', function () {
-    return view('homecelke');
+    return view('login.index');
 });
 
+// Route::get('/', function () {
+//     return view('homecelke');
+// });
+
 /* My routes */
+
+// Homepage after authentication.
+Route::get('/home', [LoginController::class, 'home'])->name('home');
 
 // Courses.
 Route::get('/index-course', [CourseController::class, 'index'])->name('course.index'); // Index course method.
