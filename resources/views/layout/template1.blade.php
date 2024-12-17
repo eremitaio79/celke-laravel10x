@@ -61,14 +61,28 @@
                                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                             </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"
+                                <a class="nav-link active" aria-current="page"
+                                    href="{{ route('logout.process') }}"
                                     target="_self">Encerrar</a>
                             </li>
                         </ul>
-                        {{-- <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form> --}}
+                        <form class="d-flex" role="search">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="#"
+                                        target="_self">
+                                        @if (auth()->check())
+                                            <i class="fa-solid fa-user"></i>&nbsp;
+                                            <strong>{{ auth()->user()->name }}</strong>&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope"></i>
+                                            &nbsp;{{ auth()->user()->email }}
+                                        @endif
+                                    </a>
+                                </li>
+                            </ul>
+                            {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button> --}}
+                        </form>
                     </div>
                 </div>
             </nav>

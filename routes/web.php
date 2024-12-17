@@ -26,16 +26,17 @@ use Illuminate\Support\Facades\Route;
 // Homepage project route.
 Route::get('/', function () {
     return view('login.index');
-});
+})->name('root');
 
-// Route::get('/', function () {
-//     return view('homecelke');
-// });
 
-/* My routes */
+/* My routes ------------------------------------------------------------------------------------ */
 
 // Homepage after authentication.
 Route::get('/home', [LoginController::class, 'home'])->name('home');
+
+// Authentication.
+Route::post('/process-login', [LoginController::class, 'loginProcess'])->name('login.process'); // Login.
+Route::get('/process-logout', [LoginController::class, 'logoutProcess'])->name('logout.process'); // Logout.
 
 // Courses.
 Route::get('/index-course', [CourseController::class, 'index'])->name('course.index'); // Index course method.
