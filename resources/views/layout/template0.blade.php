@@ -25,46 +25,14 @@
             {{-- NAVBAR START --}}
             <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ route('home') }}" target="_self">COURSES</a>
+                    <a class="navbar-brand" href="{{ url('/') }}" target="_self">COURSES</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('home') }}"
-                                    target="_self">Home</a>
-                            </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li> --}}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Módulos
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('course.index') }}" target="_self"><i
-                                                class="fa-solid fa-book"></i>&nbsp;&nbsp;Lista de Cursos...</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('allclasse.index') }}" target="_self"><i
-                                                class="fa-solid fa-clipboard"></i>&nbsp;&nbsp;Todas as Aulas...</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{ route('user.index') }}" target="_self"><i
-                                                class="fa-solid fa-user"></i>&nbsp;&nbsp;Usuários...</a></li>
-                                </ul>
-                            </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                            </li> --}}
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#"
-                                    target="_self">Encerrar</a>
-                            </li>
-                        </ul>
+
                         {{-- <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -84,7 +52,7 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" target="_self"
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}" target="_self"
                                 class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover text-decoration-none"><i
                                     class="fa-solid fa-house"></i></a>
                         </li>
