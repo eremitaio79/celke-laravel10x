@@ -30,10 +30,14 @@ class LoginController extends Controller
         ]);
 
         if (!$authenticated) {
-            return back()->withInput()->with('msgError', 'Ocorreu um erro ao autenticar seus dados de acesso. Tente novamente.');
+            return back()
+                ->withInput()
+                ->with('msgError', 'Ocorreu um erro ao autenticar seus dados de acesso. Tente novamente.');
         }
 
-        return redirect()->route('home')->with('msgSuccess', 'Autenticado com sucesso!');
+        return redirect()
+            ->route('home')
+            ->with('msgSuccess', 'Autenticado com sucesso!');
     }
 
     /**
@@ -51,54 +55,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('root')->with('msgSuccess', 'Seu acesso foi encerrado com sucesso!');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('root')
+            ->with('msgSuccess', 'Seu acesso foi encerrado com sucesso!');
     }
 }
