@@ -3,7 +3,10 @@
 
 @section('title', 'CURSOS')
 @section('title_card', 'Gerenciador de Cursos')
-@section('footer_card', 'Selecione a opção desejada.')
+
+@section('footer_card')
+    <i class="fa-solid fa-table-list"></i>&nbsp;&nbsp;Selecione a opção desejada.
+@endsection
 
 {{-- Breadcrumb START --}}
 @section('bc1')
@@ -39,7 +42,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Usuários</h5>
                     <p class="card-text">
-                        Utilize o gerenciador de usuários para cadastrar novos usuários que poderão acessar este sistema para realizar tarefas de gerenciamento.
+                        Utilize o gerenciador de usuários para cadastrar novos usuários que poderão acessar este sistema
+                        para realizar tarefas de gerenciamento.
                     </p>
                     <a href="{{ route('user.index') }}" target="_self" class="btn btn-warning">Ir para Usuários</a>
                 </div>
