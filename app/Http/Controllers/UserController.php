@@ -119,6 +119,7 @@ class UserController extends Controller
                 ->with('msgError', 'Usuário não encontrado.');
         }
 
+        // The update operation happens here only for name and email fields.
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
