@@ -70,7 +70,11 @@
                         <form class="d-flex" role="search">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="#"
+                                    <a class="nav-link" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        data-bs-title="Clique para editar seu perfil"
+                                        aria-current="page"
+                                        href="{{ route('profile.show') }}"
                                         target="_self">
                                         @if (auth()->check())
                                             <i class="fa-solid fa-user"></i>&nbsp;

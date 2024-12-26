@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
     // Homepage after authentication.
     Route::get('/home', [LoginController::class, 'home'])->name('home');
 
-
     // Logout route.
     Route::get('/process-logout', [LoginController::class, 'logoutProcess'])->name('logout.process'); // Logout.
 
@@ -77,4 +77,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/destroy-user/{id}', [UserController::class, 'destroy'])->name('user.destroy'); // Destroy user method.
     Route::get('/edit-user-password/{id}', [UserController::class, 'passwordEdit'])->name('user.password-edit'); // Edit password user method.
     Route::put('/update-user-password/{id}', [UserController::class, 'passwordUpdate'])->name('user.password-update'); // Update password user method.
+
+    // Connected User Profile.
+    Route::get('/show-profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/edit-profile/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::delete('/destroy-profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
