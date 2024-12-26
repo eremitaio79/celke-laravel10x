@@ -58,4 +58,19 @@ class LoginController extends Controller
         return redirect()->route('root')
             ->with('msgSuccess', 'Seu acesso foi encerrado com sucesso!');
     }
+
+    public function createUser(User $user)
+    {
+        $newUser =
+        // dd('create-user');
+
+        return view('login.create');
+    }
+
+    public function storeUser()
+    {
+        dd('store user');
+    }
+
+
 }
