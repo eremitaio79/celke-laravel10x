@@ -20,7 +20,7 @@
         <a href="{{ route('profile.edit', ['id' => $user->id]) }}" target="_self" data-bs-toggle="tooltip"
             data-bs-placement="bottom" data-bs-title="Editar suas informações" class="btn btn-success"><i
                 class="fa-solid fa-pen-to-square"></i></a>
-        <a href="{{ route('profile.edit', ['id' => $user->id]) }}" target="_self" data-bs-toggle="tooltip"
+        <a href="{{ route('profile.password.edit', ['id' => $user->id]) }}" target="_self" data-bs-toggle="tooltip"
             data-bs-placement="bottom" data-bs-title="Alterar senha de acesso" class="btn btn-warning">
                 <i class="fa-solid fa-xmarks-lines"></i></a>
         <button type="button" class="delete-user-button btn btn-danger" data-form-id="deleteForm-{{ $user->id }}"
