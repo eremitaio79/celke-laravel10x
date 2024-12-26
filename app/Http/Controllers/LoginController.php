@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\LoginUserRequest;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -61,16 +66,43 @@ class LoginController extends Controller
 
     public function createUser(User $user)
     {
-        $newUser =
         // dd('create-user');
 
         return view('login.create');
     }
 
-    public function storeUser()
+    public function storeUser(LoginUserRequest $request)
     {
-        dd('store user');
-    }
+        $request->validated();
+        // dd($request);
 
+        DB::beginTransaction();
+
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
+
+            // Save logo for success.
+            Log::info('Sucesso ao cadastrar usuário', ['id' => $user->id]);
+
+            // Commit new user record.
+            DB::commit();
+
+            // Finish and redirect to login view.
+            return redirect()->route('root')->with('msgSuccess', 'Usuário cadastrado com sucesso!');
+
+        } catch(Exception $error) {
+            // Save log for error.
+            Log::info('Erro ao cadastrar usuário', ['error' => $error->getMessage()]);
+
+            // Rollback the database to the last change.
+            DB::rollBack();
+
+            return back()->withInput()->with('msgError', 'Erro ao cadastrar o novo usuário.');
+        }
+    }
 
 }
