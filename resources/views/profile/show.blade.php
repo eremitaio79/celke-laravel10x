@@ -23,10 +23,10 @@
         <a href="{{ route('profile.password.edit', ['id' => $user->id]) }}" target="_self" data-bs-toggle="tooltip"
             data-bs-placement="bottom" data-bs-title="Alterar senha de acesso" class="btn btn-warning">
                 <i class="fa-solid fa-xmarks-lines"></i></a>
-        <button type="button" class="delete-user-button btn btn-danger" data-form-id="deleteForm-{{ $user->id }}"
+        {{-- <button type="button" class="delete-user-button btn btn-danger" data-form-id="deleteForm-{{ $user->id }}"
             data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Excluir seu usuário">
             <i class="fa-solid fa-trash"></i>
-        </button>
+        </button> --}}
         {{-- <button type="button" onclick="showCustomConfirm(event)" data-bs-toggle="tooltip" data-bs-placement="bottom"
             data-bs-title="Excluir este curso" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button> --}}
     </form>
