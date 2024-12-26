@@ -10,12 +10,12 @@
 @section('footer_card')
     <div class="row">
         <div class="col-12">
-            Caso ainda não possua usuário, <strong>
-                <a href="#" target="_self"
+            Caso ainda não possua usuário, &nbsp;<strong>
+                <a href="{{ route('user.login.create') }}" target="_self"
                     class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
                     clique aqui
                 </a>
-            </strong> para cadastrar.
+            </strong>&nbsp;&nbsp;para cadastrar.
         </div>
     </div>
 @endsection
