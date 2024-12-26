@@ -81,5 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Connected User Profile.
     Route::get('/show-profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/edit-profile/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/update-profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/edit-password-profile/{id}', [ProfileController::class, 'passwordEdit'])->name('profile.password.edit');
+    Route::put('/update-password-profile/{id}', [ProfileController::class, 'passwordUpdate'])->name('profile.password.update');
     Route::delete('/destroy-profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
