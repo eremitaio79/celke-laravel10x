@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfilePasswordRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\RecoveryRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -11,9 +12,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Password;
+use PhpParser\Node\Stmt\Echo_;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        return view('login.index');
+    }
     /**
      * Display the specified resource.
      */
@@ -113,6 +120,70 @@ class ProfileController extends Controller
 
             return back()->withInput()->with('msgError', 'Ocorreu um erro ao editar a senha.');
         }
+    }
+
+    public function passwordRecovery()
+    {
+        // dd('profile.recovery');
+
+        return view('login.recovery');
+    }
+
+    public function passwordRecoverySubmit(Request $request)
+    {
+        // dd($request);
+
+        $request->validate([
+            'email' => 'required|email'
+        ], [
+            'email.required' => 'É necessário informar o e-mail para recuperar sua senha.',
+            'email.email' => 'É necessário um e-mail válido.'
+        ]);
+
+        // Verify whether the user exists in the database.
+        $checkIfUserEmailExists = User::where('email', $request->email)->first();
+
+        if (!$checkIfUserEmailExists) {
+            // Save log.
+            Log::warning('Tentativa de recuperar senha com um e-mail não cadastrado.', [
+                'email' => $request->email
+            ]);
+
+            // Redirect user.
+            return back()->withInput()->with('msgError', 'O e-mail informado não está cadastrado.');
+        }
+
+        try {
+            // Save token to recovery password and send an email.
+            $status = Password::sendResetLink(
+                $request->only('email')
+            );
+
+            // Save log.
+            Log::info('Recuperação de senha de acesso.', [
+                'retorno' => $status,
+                'email' => $request->email
+            ]);
+
+            // Redirect user after success.
+            return redirect()
+                ->route('root')
+                ->with(
+                    'msgSuccess',
+                    'Verifique sua caixa de e-mail. Você receberá uma mensagem com  as instruções para recuperar sua senha de acesso.'
+                );
+        } catch (Exception $error) {
+            // Save log.
+            Log::warning('Erro ao recuperar sua senha.', [
+                'error' => $error->getMessage(),
+                'email' => $request->email
+            ]);
+
+            // Redirect user.
+            return back()->withInput()->with('msgError', 'Por favor, tente novamente mais tarde.');
+        }
+
+        return view('login.index');
     }
 
     /**

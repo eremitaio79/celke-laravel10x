@@ -18,6 +18,19 @@
             </strong>&nbsp;&nbsp;para cadastrar.
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-12">
+            <span style="font-size:11px;font-weight:500;">
+                Esqueci minha senha. &nbsp;<strong>
+                <a href="{{ route('profile.recovery') }}" target="_self"
+                    class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                    clique aqui
+                </a>
+            </strong>&nbsp;&nbsp;para recuperar sua senha de acesso.
+        </span>
+        </div>
+    </div>
 @endsection
 
 {{-- Breadcrumb START --}}
