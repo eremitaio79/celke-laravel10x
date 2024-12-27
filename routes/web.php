@@ -32,6 +32,8 @@ Route::get('/', function () {
 
 /* My routes ------------------------------------------------------------------------------------ */
 
+/* PUBLIC ROUTES */
+// -------------------------------------------------------------------------------------------------
 // Authentication.
 Route::post('/process-login', [LoginController::class, 'loginProcess'])->name('login.process'); // Login.
 
@@ -39,6 +41,14 @@ Route::post('/process-login', [LoginController::class, 'loginProcess'])->name('l
 Route::get('/create-user-login', [LoginController::class, 'createUser'])->name('user.login.create');
 Route::post('/store-user-login', [LoginController::class, 'storeUser'])->name('user.login.store');
 
+// Password Recovery.
+Route::get('/recovery-profile', [ProfileController::class, 'passwordRecovery'])->name('profile.recovery');
+Route::post('/recovery-profile', [ProfileController::class, 'passwordRecoverySubmit'])->name('profile.recovery.submit');
+Route::get('/recovery-reset', [ProfileController::class, 'index'])->name('password.reset');
+
+
+/* PRIVATE ROUTES */
+// -------------------------------------------------------------------------------------------------
 // Route group to check permissions to access the views below.
 // These are restricted routes that rely on user authentication.
 Route::group(['middleware' => 'auth'], function () {
