@@ -186,6 +186,11 @@ class ProfileController extends Controller
         return view('login.index');
     }
 
+    public function showResetPassword(Request $request)
+    {
+        dd('Token: ' . $request->token);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

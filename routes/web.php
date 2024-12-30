@@ -45,6 +45,7 @@ Route::post('/store-user-login', [LoginController::class, 'storeUser'])->name('u
 Route::get('/recovery-profile', [ProfileController::class, 'passwordRecovery'])->name('profile.recovery');
 Route::post('/recovery-profile', [ProfileController::class, 'passwordRecoverySubmit'])->name('profile.recovery.submit');
 Route::get('/recovery-reset', [ProfileController::class, 'index'])->name('password.reset');
+Route::get('/password-reset/{token}', [ProfileController::class, 'showResetPassword'])->name('password.reseting');
 
 
 /* PRIVATE ROUTES */
