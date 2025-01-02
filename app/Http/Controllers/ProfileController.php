@@ -226,7 +226,11 @@ class ProfileController extends Controller
                 }
             );
 
-            Log::info('Senha atualizada', ['resposta' => $status, 'email' => $request->email]);
+            if ($status === Password::PASSWORD_RESET) {
+                Log::info('Senha atualizada', ['resposta' => $status, 'email' => $request->email]);
+            } else {
+                Log::info('Senha não atualizada', ['resposta' => $status, 'email' => $request->email]);
+            }
 
             return $status === Password::PASSWORD_RESET ?
                 redirect()->route('root')->with('msgSuccess', 'Sua senha foi atualizada com sucesso!') :
