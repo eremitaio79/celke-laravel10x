@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Log; // Courses log.
 
 class CourseController extends Controller
 {
+    // Construct method.
+    public function __construct()
+    {
+        $this->middleware('auth'); // Check if the user is logged.
+        $this->middleware('permission:index-course', ['only' => ['index']]);
+        $this->middleware('permission:show-course', ['only' => ['show']]);
+        $this->middleware('permission:create-course', ['only' => ['create']]);
+        $this->middleware('permission:store-course', ['only' => ['store']]);
+        $this->middleware('permission:edit-course', ['only' => ['edit']]);
+        $this->middleware('permission:update-course', ['only' => ['update']]);
+        $this->middleware('permission:destroy-course', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      * PE79: homepage from courses. Use 'index' method.
