@@ -19,8 +19,11 @@
 @section('links')
     <a href="{{ route('allclasse.index') }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
         data-bs-title="Ver todas as aulas" target="_self" class="btn btn-secondary">Todas as Aulas</a>
+
+        @can('create-course')
     <a href="{{ route('course.create') }}" data-bs-toggle="tooltip" data-bs-placement="bottom"
         data-bs-title="Cadastrar novo curso" target="_self" class="btn btn-primary">Novo Curso</a>
+        @endcan
 @endsection
 
 
@@ -137,11 +140,13 @@
                                             @method('DELETE')
 
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                                @can('create-course')
                                                 <a type="button" class="btn btn-success btn-sm" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Editar curso"
                                                     href="{{ route('course.edit', ['id' => $course->id]) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
+                                                @endcan
 
                                                 <a type="button" class="btn btn-warning btn-sm" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Detalhes do curso"
@@ -149,11 +154,13 @@
                                                     <i class="fa-solid fa-eye"></i>
                                                 </a>
 
+                                                @can('create-course')
                                                 <button type="button" class="delete-course-button btn btn-sm btn-danger"
                                                     data-form-id="deleteForm-{{ $course->id }}" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Excluir esta aula">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
+                                                @endcan
 
                                                 <a type="button" class="btn btn-secondary btn-sm position-relative"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
