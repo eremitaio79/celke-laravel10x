@@ -53,7 +53,7 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-6 text-start">
+            <div class="col-3 text-start">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}"
                     placeholder="Informe o e-mail do usuário" required />
@@ -68,6 +68,29 @@
             <div class="col-3 text-start">
                 <label for="password_confirmation">Confirme a Senha</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                @error('password')
+                    <small class="text-danger">{!! $message !!}</small>
+                @enderror
+            </div>
+
+            <div class="col-3 text-start">
+                <label for="roles">Nível de Acesso</label>
+                <select class="form-select" name="roles" id="roles" required>
+                    <option value="">Selecione o nível de acesso</option>
+                    
+                    @forelse ($roles as $role)
+                        @if ($role != 'root')
+                            <option value="{{ $role }}" {{ old('roles') == $role ? 'selected' : '' }}>{{ $role }}</option>
+                        @else
+                            @if (Auth::user()->hasRole('root'))
+                                <option value="{{ $role }}" {{ old('roles') == $role ? 'selected' : '' }}>{{ $role }}</option>
+                            @endif
+                        @endif
+                    @empty
+                        
+                    @endforelse
+
+                </select>
                 @error('password')
                     <small class="text-danger">{!! $message !!}</small>
                 @enderror

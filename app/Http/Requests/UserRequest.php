@@ -26,6 +26,7 @@ class UserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email|max:255',
             // 'password' => 'required|string|min:8|confirmed', // Adiciona validação de confirmação
+            'roles' => 'required',
         ];
     }
 
@@ -40,6 +41,7 @@ class UserRequest extends FormRequest
             // 'password.required' => 'O campo <strong>Senha do Usuário</strong> é obrigatório.',
             // 'password.min' => 'A <strong>Senha</strong> deve ter no mínimo :min caracteres.',
             // 'password.confirmed' => 'A confirmação da <strong>Senha</strong> não corresponde.',
+            'roles.required' => 'O campo <strong>Nível de Acesso</strong> é obrigatório.',
         ];
     }
 }

@@ -78,12 +78,23 @@
 
             <tr>
                 <th scope="row">Nome</th>
-                <td>{{ $user->name }}</td>
+                <td><strong>{{ $user->name }}</strong></td>
             </tr>
 
             <tr>
                 <th scope="row">E-mail</th>
                 <td>{{ $user->email }}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Nível de Acesso</th>
+                <td>
+                    @forelse ($user->getRoleNames() as $role)
+                        <strong>{{ $role }}</strong>
+                    @empty
+                        
+                    @endforelse
+                </td>
             </tr>
 
             <tr>
