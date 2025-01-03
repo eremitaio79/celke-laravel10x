@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Contracts\Permission;
+use Illuminate\Database\Eloquent\Model;
 
 class LoginController extends Controller
 {
@@ -40,6 +42,21 @@ class LoginController extends Controller
                 ->withInput()
                 ->with('msgError', 'Ocorreu um erro ao autenticar seus dados de acesso. Tente novamente.');
         }
+
+        // Get authenticated user data.
+        $user = Auth::user();
+        $user = User::findOrFail($user->id);
+
+        // Check if the user has super-user permissions.
+        if ($user->hasRole('root')) {
+            // If the user is super-user.
+            $permissions = DB::table('permissions')->pluck('name')->toArray();
+        } else {
+            $permissions = $user->getPermissionsViaRoles()->pluck('name')->toArray();
+        }
+
+        // User permissions.
+        $user->syncPermissions($permissions);
 
         return redirect()
             ->route('home')
@@ -94,8 +111,7 @@ class LoginController extends Controller
 
             // Finish and redirect to login view.
             return redirect()->route('root')->with('msgSuccess', 'Usuário cadastrado com sucesso!');
-
-        } catch(Exception $error) {
+        } catch (Exception $error) {
             // Save log for error.
             Log::info('Erro ao cadastrar usuário', ['error' => $error->getMessage()]);
 
@@ -105,5 +121,4 @@ class LoginController extends Controller
             return back()->withInput()->with('msgError', 'Erro ao cadastrar o novo usuário.');
         }
     }
-
 }
