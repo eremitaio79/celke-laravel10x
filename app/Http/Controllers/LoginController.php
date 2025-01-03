@@ -103,6 +103,9 @@ class LoginController extends Controller
                 'password' => Hash::make($request->password, ['rounds' => 10])
             ]);
 
+            // Define user roles (their access permissions).
+            $user->assignRole('student');
+
             // Save logo for success.
             Log::info('Sucesso ao cadastrar usuário', ['id' => $user->id]);
 

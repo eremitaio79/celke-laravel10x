@@ -77,12 +77,23 @@
 
             <tr>
                 <th scope="row">Nome</th>
-                <td>{{ $selectedUser->name }}</td>
+                <td><strong>{{ $selectedUser->name }}</strong></td>
             </tr>
 
             <tr>
                 <th scope="row">E-mail</th>
                 <td>{{ $selectedUser->email }}</td>
+            </tr>
+            
+            <tr>
+                <th scope="row">Nível de Acesso</th>
+                <td>
+                    @forelse ($selectedUser->getRoleNames() as $role)
+                        <strong>{{ $role }}</strong>
+                    @empty
+                        
+                    @endforelse
+                </td>
             </tr>
 
             <tr>

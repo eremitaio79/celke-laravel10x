@@ -102,6 +102,7 @@
                             <tr class="text-start">
                                 <th scope="col" width="50">ID</th>
                                 <th scope="col" class="text-truncate" style="max-width: 150px;">Nome</th>
+                                <th scope="col" class="text-truncate" style="max-width: 150px;">Nível de Acesso</th>
                                 <th scope="col" class="d-none d-md-table-cell" width="220">Criação</th>
                                 <th scope="col" width="150">Ações</th>
                             </tr>
@@ -111,6 +112,13 @@
                                 <tr class="text-start">
                                     <th scope="row">{{ $user->id }}</th>
                                     <td class="text-truncate" style="max-width: 150px;"><strong>{{ $user->name }}</strong>
+                                    </td>
+                                    <td class="text-truncate" style="max-width: 150px;">
+                                        @forelse ($user->getRoleNames() as $role)
+                                            {{ $role }}
+                                        @empty
+                        
+                                        @endforelse
                                     </td>
                                     <td class="d-none d-md-table-cell">
                                         {{ \Carbon\Carbon::parse($user->created_at)->tz('America/Belem')->format('d/m/Y H:i:s') }}

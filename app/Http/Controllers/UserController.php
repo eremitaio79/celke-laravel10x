@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Exception; // Importar explicitamente (não obrigatório, mas pode ajudar o editor)
-
-use PDOException;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -37,7 +36,14 @@ class UserController extends Controller
     public function create()
     {
         // dd('User create');
-        return view('users.create');
+        // Retrieve the roles from the 'roles' table.
+        // $roles = DB::table('permissions')->pluck('name')->all();
+        $roles = DB::table('roles')->pluck('name')->all();
+        // dd($roles);
+
+        return view('users.create', [
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -50,11 +56,14 @@ class UserController extends Controller
         // dd($request);
         $userRequest->validated();
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password, ['rounds' => 10]), // Criptografando a senha com 10 saltos.
         ]);
+
+        // $userRequest->assignRole($request->roles);
+        $user->assignRole($request->roles);
 
         Log::info('PE79: Novo usuário cadastrado', [
             $userRequest
