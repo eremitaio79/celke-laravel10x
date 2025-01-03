@@ -81,8 +81,8 @@ class RoleSeeder extends Seeder
             ]);
 
             $student->givePermissionTo([
-                'index-course',
-                'show-course',
+                // 'index-course',
+                // 'show-course',
                 // 'create-course',
                 // 'store-course',
                 // 'edit-course',
