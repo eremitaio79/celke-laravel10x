@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserPasswordRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Database\Seeders\RoleSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -62,6 +63,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password, ['rounds' => 10]), // Criptografando a senha com 10 saltos.
         ]);
 
+        // User roles (nível de acesso do usuário).
         // $userRequest->assignRole($request->roles);
         $user->assignRole($request->roles);
 
@@ -101,13 +103,26 @@ class UserController extends Controller
         $userEdit = User::findorFail($id);
         // dd($userEdit);
 
+        // Recupera os níveis de acesso para os usuários (roles).
+        $roles = DB::table('roles')->pluck('name')->all();
+        // dd($roles);
+
+        // Recupera o nível do usuário selecionado para edição.
+        $userRoles = $userEdit->roles->pluck('name')->first();
+        // dd($user);
+
         if (!$userEdit) {
             return redirect()
                 ->route('user.index')
                 ->with('msgError', 'Usuário não localizado.');
         }
 
-        return view('users.edit', compact('userEdit'));
+        // return view('users.edit', compact('userEdit'));
+        return view('users.edit', [
+            'userEdit' => $userEdit,
+            'roles' => $roles,
+            'userRoles' => $userRoles,
+        ]);
     }
 
     /**
@@ -133,6 +148,9 @@ class UserController extends Controller
             'email' => $request->email,
             // 'password' => Hash::make($request->password)
         ]);
+
+        // Salva o nível de acesso alterado do usuário selecionado.
+        $user->syncRoles($request->roles);
 
         return redirect()
             ->route('user.show', $id)
