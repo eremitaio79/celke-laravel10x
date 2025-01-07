@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Exception; // Importar explicitamente (não obrigatório, mas pode ajudar o editor)
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -161,7 +162,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      * ---------------------------------------------------------------------------------------------
      */
-    public function destroy(string $id)
+    public function destroy(string $id, User $user)
     {        // dd('User destroy');
         // dd($id);
         try {
@@ -170,6 +171,15 @@ class UserController extends Controller
 
             // Exclui o registro do usuário
             $user->delete();
+
+            // Após excluir o usuário, remove todos os níveis atribuídos ao usuário excluído.
+            $user->syncRoles([]);
+
+            // Salvar o log.
+            Log::info('Usuário excluído', [
+                'id' => $user->id,
+                'action_user_id' => Auth::id(),
+            ]);
 
             // Redireciona com mensagem de sucesso
             return redirect()
