@@ -62,6 +62,29 @@
                     placeholder="Informe o e-mail do usuário" required />
             </div>
 
+            <div class="col-6 text-start">
+                <label for="roles">Nível de Acesso</label>
+                <select class="form-select" name="roles" id="roles" required>
+                    <option value="">Selecione o nível de acesso</option>
+
+                    @forelse ($roles as $role)
+                        @if ($role != 'root')
+                            <option value="{{ $role }}" {{ old('roles') == $role || $role == $userRoles ? 'selected' : '' }}>{{ $role }}</option>
+                        @else
+                            @if (Auth::user()->hasRole('root'))
+                                <option value="{{ $role }}" {{ old('roles') == $role || $role == $userRoles ? 'selected' : '' }}>{{ $role }}</option>
+                            @endif
+                        @endif
+                    @empty
+
+                    @endforelse
+
+                </select>
+                @error('password')
+                    <small class="text-danger">{!! $message !!}</small>
+                @enderror
+            </div>
+
             {{-- <div class="col-3 text-start">
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" class="form-control" value="{{ old('password', $userEdit->password) }}"
