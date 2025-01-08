@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -101,4 +102,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // User levels.
     Route::get('/index-role', [RoleController::class, 'index'])->name('role.index');
+
+    // Permissions role level.
+    Route::get('index-role-permission/{role}', [RolePermissionController::class, 'index'])->name('role.permission.index');
 });
