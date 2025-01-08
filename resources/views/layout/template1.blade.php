@@ -56,6 +56,9 @@
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('user.index') }}" target="_self"><i
                                                 class="fa-solid fa-user"></i>&nbsp;&nbsp;Usuários...</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('role.index') }}" target="_self">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>&nbsp;&nbsp;Níveis de Acesso...
+                                        </a></li>
                                 </ul>
                             </li>
                             {{-- <li class="nav-item">
