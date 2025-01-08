@@ -4,6 +4,7 @@ use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -97,4 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-password-profile/{id}', [ProfileController::class, 'passwordEdit'])->name('profile.password.edit');
     Route::put('/update-password-profile/{id}', [ProfileController::class, 'passwordUpdate'])->name('profile.password.update');
     Route::delete('/destroy-profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // User levels.
+    Route::get('/index-role', [RoleController::class, 'index'])->name('role.index');
 });
