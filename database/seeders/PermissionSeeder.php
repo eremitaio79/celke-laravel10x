@@ -21,6 +21,8 @@ class PermissionSeeder extends Seeder
             'edit-course',
             'update-course',
             'destroy-course',
+
+            'index-role',
         ];
 
         foreach ($permissions as $permission) {

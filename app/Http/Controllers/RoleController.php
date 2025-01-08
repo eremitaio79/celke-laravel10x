@@ -9,6 +9,15 @@ use Spatie\Permission\Models\Role; // Use o namespace correto
 
 class RoleController extends Controller
 {
+    // Constructor.
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:index-role', [
+            'only' => 'index' // Somente o método index pode ser acessado.
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      */
