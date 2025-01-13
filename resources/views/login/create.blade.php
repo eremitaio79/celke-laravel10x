@@ -3,12 +3,12 @@
 
 @section('title', 'ACESSO')
 @section('title_card', 'Criar sua Conta de Acesso')
-@section('footer_card', 'Preencha as informações para criar seu usuário de acesso.')
+@section('footer_card', 'Preencha as informações para criar seu usuário de acesso...')
 
 {{-- Breadcrumb START --}}
 @section('bc1')
 <li class="breadcrumb-item" aria-current="page">Usuários</li>
-<li class="breadcrumb-item active" aria-current="page"><strong>Novo Usuário</strong></li>
+<li class="breadcrumb-item active" aria-current="page"><strong>Novo Usuário...</strong></li>
 @endsection
 {{-- Breadcrumb END --}}
 
